@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: 5857824480987002732}
   StringsBanks:
   - {fileID: 7382597093631512728}
-  cacheTime: 638636578892930416
+  cacheTime: 638636592101471725
   cacheVersion: 131616
 --- !u!114 &5857824480987002732
 MonoBehaviour:
@@ -38,7 +38,7 @@ MonoBehaviour:
   Path: ludum-56-FMODprj/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638636578892900416
+  lastModified: 638636592101471725
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -58,7 +58,7 @@ MonoBehaviour:
   Path: ludum-56-FMODprj/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638636578892930416
+  lastModified: 638636592101471725
   FileSizes:
   - Name: Desktop
     Value: 712
