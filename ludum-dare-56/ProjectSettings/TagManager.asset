@@ -41,3 +41,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Enviroment
+    uniqueID: 3972350553
+    locked: 0
+  - name: Doors
+    uniqueID: 363635543
+    locked: 0
+  - name: GnomeBehind
+    uniqueID: 3339160727
+    locked: 0
+  - name: GnomeFront
+    uniqueID: 3283708193
+    locked: 0
+  - name: Items
+    uniqueID: 2450358515
+    locked: 0
+  - name: InGameUI
+    uniqueID: 2215221999
+    locked: 0
+  - name: MainUI
+    uniqueID: 4023484645
+    locked: 0
