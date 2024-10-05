@@ -26,7 +26,7 @@ namespace Gnomes
         [SerializeField] private float disappearTime;
         [SerializeField] private float timeBeforeScreamer;
         
-        private RoutePointPair _routePointPair;
+        protected RoutePointPair _routePointPair;
         private GnomeState _currentState;
 
         private float _timeRemaining;
@@ -34,7 +34,7 @@ namespace Gnomes
 
         private Image _screamerUIImage;
         private Animator _screamerAnimator;
-        private SpriteRenderer _spriteRenderer;
+        protected SpriteRenderer _spriteRenderer;
         protected virtual void Start()
         {
             _screamerUIImage.gameObject.SetActive(false);
@@ -51,7 +51,6 @@ namespace Gnomes
             
             _currentState = GnomeState.Appeared;
             
-            Debug.Log("Appeared, counting time to get closer");
             CountTimeToNextStateAsync(changeToCloserStateTime, _cancelChangeStateCts.Token).Forget();
         }
         private void GetCloser()
@@ -63,7 +62,6 @@ namespace Gnomes
             gameObject.transform.position = _routePointPair.CloserPoint.position;
             _spriteRenderer.sprite = closerSprite;
             
-            Debug.Log("Got closer, counting time to attack");
             CountTimeToNextStateAsync(changeToAttackStateTime, _cancelChangeStateCts.Token).Forget();
         }
         private async UniTask Attack(CancellationToken token)
@@ -101,30 +99,23 @@ namespace Gnomes
         }
         private async UniTask CountTimeToNextStateAsync(float changeStateTime, CancellationToken token)
         {
-            Debug.Log("entered count time");
-
-            //await UniTask.Delay(TimeSpan.FromSeconds(changeStateTime), cancellationToken: token);
             var startTime = Time.time;
             _timeRemaining = changeStateTime;
             while (_timeRemaining > 0)
             {
-                //Debug.Log($"time remaining :{_timeRemaining}");
                 if (token.IsCancellationRequested)
                 {
                     break;
                 }
 
-                //_timeRemaining -= Time.deltaTime;
                 _timeRemaining = changeStateTime - (Time.time - startTime);
                 await UniTask.Yield(PlayerLoopTiming.TimeUpdate);
             }
-            Debug.Log($"Going to next state, cts: {token.IsCancellationRequested}, time remaining: {_timeRemaining}");
             GoToNextState();
         }
 
         private void GoToNextState()
         {
-            Debug.Log($"current state: {_currentState}");
             if (_currentState == GnomeState.Appeared)
             {
                 GetCloser();

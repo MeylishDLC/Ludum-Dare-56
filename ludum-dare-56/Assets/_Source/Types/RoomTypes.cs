@@ -1,9 +1,10 @@
-﻿namespace Core
+﻿namespace Types
 {
     public enum RoomTypes
     {
         CorridorCeiling,
         CorridorFloor,
-        HospitalRoom
+        HospitalRoomRight, 
+        HospitalRoomLeft
     }
 }

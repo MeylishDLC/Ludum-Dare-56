@@ -2,9 +2,13 @@
 {
     public enum GnomeTypes
     {
-        Tomatozilla,
+        TomatozillaLeft,
+        TomatozillaRight,
         RadioBass,
+        RadioBassLeft,
+        RadioBassRight,
         Spoonkin,
-        TomatozillaRadiobassPair
+        TomatozillaRadioBassPairLeft,
+        TomatozillaRadioBassPairRight
     }
 }

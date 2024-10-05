@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Gnomes;
+using Types;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -41,14 +42,23 @@ namespace Core
             }
             
             var roomType = freeRoute.RoomType;
-            if (roomType == RoomTypes.HospitalRoom)
+            if (roomType == RoomTypes.HospitalRoomLeft)
             {
                 if (TryFindGnomeByType(new [] 
-                        {GnomeTypes.RadioBass, GnomeTypes.Tomatozilla, GnomeTypes.TomatozillaRadiobassPair}, out var gnome))
+                        {GnomeTypes.RadioBassLeft, GnomeTypes.TomatozillaLeft, GnomeTypes.TomatozillaRadioBassPairLeft}, out var gnome))
                 {
                     SpawnGnome(gnome, freeRoute);
                 }
             }
+            if (roomType == RoomTypes.HospitalRoomRight)
+            {
+                if (TryFindGnomeByType(new [] 
+                        {GnomeTypes.RadioBassRight, GnomeTypes.TomatozillaRight, GnomeTypes.TomatozillaRadioBassPairRight}, out var gnome))
+                {
+                    SpawnGnome(gnome, freeRoute);
+                }
+            }
+            
             if (roomType == RoomTypes.CorridorCeiling)
             {
                 if (TryFindGnomeByType(GnomeTypes.RadioBass, out var gnome))
