@@ -44,6 +44,9 @@ TagManager:
   - name: Enviroment
     uniqueID: 3972350553
     locked: 0
+  - name: New Layer 8
+    uniqueID: 1044332665
+    locked: 0
   - name: Doors
     uniqueID: 363635543
     locked: 0
