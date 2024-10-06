@@ -117,6 +117,20 @@ MonoBehaviour:
       Data3: -2056315999
       Data4: -1007037771
     Path: event:/Characters/Radiobass/LaughRight
+  <FarGlitch>k__BackingField:
+    Guid:
+      Data1: 2001893997
+      Data2: 1321853948
+      Data3: -1661752696
+      Data4: -1188095150
+    Path: event:/Characters/Radiobass/FarGlitch
+  <CloseGlitch>k__BackingField:
+    Guid:
+      Data1: 1408808903
+      Data2: 1341341656
+      Data3: 59947686
+      Data4: 1044637636
+    Path: event:/Characters/Radiobass/CloseGlitch
   <TomatozillaScreamer>k__BackingField:
     Guid:
       Data1: -1295625415

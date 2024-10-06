@@ -223,6 +223,7 @@ Transform:
   - {fileID: 1524471412}
   - {fileID: 286879153}
   - {fileID: 66523086}
+  - {fileID: 438497320}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &66523085
@@ -577,6 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gnomeContainer: {fileID: 919595373}
   gnomeSpawner: {fileID: 1524471413}
+  sceneSounds: {fileID: 438497321}
   restartButton: {fileID: 1403016305}
   deathScreen: {fileID: 982245282}
   winScreen: {fileID: 702433168}
@@ -781,6 +783,52 @@ Transform:
   - {fileID: 830732551}
   m_Father: {fileID: 31851301}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &438497319
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 438497320}
+  - component: {fileID: 438497321}
+  m_Layer: 0
+  m_Name: SceneSounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &438497320
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438497319}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 39699156}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &438497321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438497319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0933b7bf322b483597807ca3ae4e3d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minTimeToKnock: 30
+  maxTimeToKnock: 70
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

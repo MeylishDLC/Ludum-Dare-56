@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
@@ -51,13 +53,28 @@ namespace Sound
             eventInstances.Add(eventInstance);
             return eventInstance;
         }
-        private void GetBuses()
+
+        public void PlayMusicDuringTime(float time, EventReference music)
         {
-            masterBus = RuntimeManager.GetBus("bus:/");
-            musicBus = RuntimeManager.GetBus("bus:/Music");
-            sfxBus = RuntimeManager.GetBus("bus:/SFX");
+            var instance = CreateInstance(music);
+    
+            var wrapper = new EventInstanceWrapper(instance);
+    
+            wrapper.Instance.start();
+
+            StopMusicAfterTime(wrapper, time).Forget();
         }
 
+        private async UniTask StopMusicAfterTime(EventInstanceWrapper wrapper, float time)
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(time));
+    
+            wrapper.Instance.stop(STOP_MODE.ALLOWFADEOUT);
+    
+            wrapper.Instance.release();
+    
+            eventInstances.Remove(wrapper.Instance);
+        }
         public void InitializeMusic(EventReference musicEventReference)
         {
             musicEventInstance = CreateInstance(musicEventReference);
@@ -71,10 +88,25 @@ namespace Sound
                 eventInstance.release();
             }
         }
-
         private void OnDestroy()
         {
             CleanUp();
+        }
+        private void GetBuses()
+        {
+            masterBus = RuntimeManager.GetBus("bus:/");
+            musicBus = RuntimeManager.GetBus("bus:/Music");
+            sfxBus = RuntimeManager.GetBus("bus:/SFX");
+        }
+    }
+    
+    public class EventInstanceWrapper
+    {
+        public EventInstance Instance { get; }
+
+        public EventInstanceWrapper(EventInstance instance)
+        {
+            Instance = instance;
         }
     }
 }

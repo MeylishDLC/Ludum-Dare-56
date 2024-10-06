@@ -36,6 +36,7 @@ namespace Gnomes
            
                 await UniTask.Yield(PlayerLoopTiming.TimeUpdate);
             }
+            _soundManager.PlayOneShot(_soundManager.FMODEvents.Shocked);
             ShooGnomeAway();
         }
     }

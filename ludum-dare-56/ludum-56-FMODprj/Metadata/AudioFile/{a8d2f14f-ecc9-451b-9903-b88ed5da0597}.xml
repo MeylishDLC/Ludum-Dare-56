@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{e89448c4-5072-4004-999d-47a6cba81760}">
+	<object class="AudioFile" id="{a8d2f14f-ecc9-451b-9903-b88ed5da0597}">
 		<property name="assetPath">
-			<value>SFX/RIGHT_EAR_OPENING_THE_DOOR.mp3</value>
+			<value>SFX/LEFT_EAR_OPENING_THE_DOOR (1).mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
@@ -14,7 +14,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>10.213877551020408</value>
+			<value>10.161632653061224</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{169027b8-fe9d-4e12-929e-a9df5ba7f897}</destination>

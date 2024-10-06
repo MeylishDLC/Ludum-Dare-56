@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Camera;
 using Core;
 using Cysharp.Threading.Tasks;
@@ -12,10 +13,12 @@ namespace Gnomes
     {
         [SerializeField] private int soundAmountToShoo;
         [SerializeField] private int tomatoesAmountToShoo;
+        [SerializeField] private float timeBeforeEating;
         
         private int _currentSoundAmount;
         private int _currentTomatoAmount;
         private bool _allConditionsDone;
+        private bool _isWaiting;
         
         private SoundButton[] _soundButtons;
         private Tomato _tomato;
@@ -51,10 +54,24 @@ namespace Gnomes
         }
         private void OnTomatoClicked()
         {
+            OnTomatoClickedAsync(CancellationToken.None).Forget();
+        }
+
+        private async UniTask OnTomatoClickedAsync(CancellationToken token)
+        {
             if (_currentState != GnomeState.Closer)
             {
                 return;
             }
+            if (_isWaiting)
+            {
+                return;
+            }
+            
+            _isWaiting = true;
+            await UniTask.Delay(TimeSpan.FromSeconds(timeBeforeEating), cancellationToken: token);
+            PlayEatSound();
+            _isWaiting = false;
             
             if (_currentTomatoAmount < tomatoesAmountToShoo)
             {
@@ -65,6 +82,17 @@ namespace Gnomes
                 }
             }
             TryShoo();
+        }
+        private void PlayEatSound()
+        {
+            if (GnomeType == GnomeTypes.RadiozillaLeft)
+            {
+                _soundManager.PlayOneShot(_soundManager.FMODEvents.EatingLeft);
+            }
+            if (GnomeType == GnomeTypes.RadiozillaRight)
+            {
+                _soundManager.PlayOneShot(_soundManager.FMODEvents.EatingRight);
+            }
         }
         private void TryShoo()
         {

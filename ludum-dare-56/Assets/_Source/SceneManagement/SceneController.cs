@@ -4,6 +4,7 @@ using Camera;
 using Core;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Environment;
 using Gnomes;
 using Sound;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace SceneManagement
         
         [SerializeField] private Transform gnomeContainer;
         [SerializeField] private GnomeSpawner gnomeSpawner;
+        [SerializeField] private SceneSounds sceneSounds;
         
         [Header("End Screen Settings")]
         [SerializeField] private Button restartButton;
@@ -70,6 +72,8 @@ namespace SceneManagement
         {
             Destroy(gnomeContainer.gameObject);
             gnomeSpawner.StopSpawning();
+            sceneSounds.CancelKnockingSounds();
+            Destroy(sceneSounds.gameObject);
         }
         private async UniTask ShowWinScreenAsync(CancellationToken token)
         {

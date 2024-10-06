@@ -30,18 +30,18 @@ namespace Gnomes
         [SerializeField] protected float disappearTime;
         [SerializeField] protected float timeBeforeScreamer;
         
+        protected CancellationTokenSource _cancelChangeStateCts = new();
         protected RoutePointPair _routePointPair;
         protected GnomeState _currentState;
         protected Flashlight _flashlight;
         protected EventReference _screamerSound;
         protected SoundManager _soundManager;
+        protected SpriteRenderer _spriteRenderer;
         
         private Screamer _screamer;
-        private SpriteRenderer _spriteRenderer;
         private CameraMovement _cameraMovement;
         
         private float _timeRemaining;
-        private CancellationTokenSource _cancelChangeStateCts = new();
         private void OnDestroy()
         {
             if (_cancelChangeStateCts != null)
@@ -66,7 +66,7 @@ namespace Gnomes
             
             Appear(CancellationToken.None).Forget();
         }
-        private async UniTask Appear(CancellationToken token)
+        protected virtual async UniTask Appear(CancellationToken token)
         {
             _currentState = GnomeState.Appeared;
             await _spriteRenderer.DOFade(0f, 0f).ToUniTask(cancellationToken: token);
@@ -120,7 +120,8 @@ namespace Gnomes
             _routePointPair.IsReserved = false;
             Destroy(gameObject);
         }
-        private async UniTask CountTimeToNextStateAsync(float changeStateTime, CancellationToken token)
+
+        protected async UniTask CountTimeToNextStateAsync(float changeStateTime, CancellationToken token)
         {
             var startTime = Time.time;
             _timeRemaining = changeStateTime;
@@ -153,7 +154,8 @@ namespace Gnomes
                 Attack(CancellationToken.None).Forget();
             }
         }
-        private void CheckCts()
+
+        protected void CheckCts()
         {
             _cancelChangeStateCts ??= new CancellationTokenSource();
         }

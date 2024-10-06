@@ -73,6 +73,7 @@ namespace Core
             if (freeRoute == null) return;
 
             var roomType = freeRoute.RoomType;
+            PlaySound(roomType);
             SpawnInRoom(roomType, freeRoute);
         }
         private void SpawnInRoom(RoomTypes roomType, RoutePointPair freeRoute)
@@ -177,11 +178,26 @@ namespace Core
                 _ => Array.Empty<GnomeTypes>()
             };
         }
-
         private RoutePointPair GetFreeRoute()
         {
             var freeRoutes = routes.Where(route => !route.IsReserved).ToList();
             return freeRoutes.Any() ? freeRoutes[Random.Range(0, freeRoutes.Count)] : null;
+        }
+
+        private void PlaySound(RoomTypes roomType)
+        {
+            if (roomType == RoomTypes.HospitalRoomLeft)
+            {
+                _soundManager.PlayOneShot(_soundManager.FMODEvents.OpeningDoorLeft);
+            }
+            if (roomType == RoomTypes.HospitalRoomRight)
+            {
+                _soundManager.PlayOneShot(_soundManager.FMODEvents.OpeningDoorRight);
+            }
+            if (roomType == RoomTypes.CorridorFloor)
+            {
+                _soundManager.PlayOneShot(_soundManager.FMODEvents.Footsteps);
+            }
         }
     }
 }

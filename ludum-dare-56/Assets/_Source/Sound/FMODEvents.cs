@@ -28,6 +28,8 @@ namespace Sound
         [field: SerializeField] public EventReference LaughHall { get; private set; }
         [field: SerializeField] public EventReference LaughLeft { get; private set; }
         [field: SerializeField] public EventReference LaughRight { get; private set; }
+        [field: SerializeField] public EventReference FarGlitch { get; private set; }
+        [field: SerializeField] public EventReference CloseGlitch { get; private set; }
         
         [field: Header("Tomatozilla")]
         [field: SerializeField] public EventReference TomatozillaScreamer { get; private set; }

@@ -3,6 +3,7 @@ using System.Threading;
 using Camera;
 using Core;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using Items;
 using Sound;
 using UnityEngine;
@@ -33,9 +34,22 @@ namespace Gnomes
             gameObject.transform.rotation = routePointPair.FurtherPoint.rotation;
             base.Initialize(routePointPair, screamer, flashlight, cameraMovement, soundManager);
         }
+
+        protected override async UniTask Appear(CancellationToken token)
+        {
+            _currentState = GnomeState.Appeared;
+            await _spriteRenderer.DOFade(0f, 0f).ToUniTask(cancellationToken: token);
+            await _spriteRenderer.DOFade(1f, 0.5f).ToUniTask(cancellationToken: token);
+            
+            CheckCts();
+            _soundManager.PlayMusicDuringTime(changeToCloserStateTime, _soundManager.FMODEvents.FarGlitch);
+            CountTimeToNextStateAsync(changeToCloserStateTime, _cancelChangeStateCts.Token).Forget();
+        }
+
         protected override void GetCloser()
         {
             gameObject.transform.rotation = _routePointPair.CloserPoint.rotation;
+            _soundManager.PlayMusicDuringTime(changeToAttackStateTime, _soundManager.FMODEvents.CloseGlitch);
             base.GetCloser();
         }
         private void OnSoundButtonPressed()
