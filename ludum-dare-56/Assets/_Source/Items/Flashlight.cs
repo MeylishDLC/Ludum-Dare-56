@@ -18,7 +18,7 @@ namespace Items
                 var mousePos = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 var hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
-                if (hit.collider != null)
+                if (hit.collider != null && hit.collider.gameObject == gameObject)
                 {
                     TurnOnFlashlight(true);
                 }

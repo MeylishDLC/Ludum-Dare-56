@@ -11,29 +11,28 @@ namespace Gnomes
 {
     public abstract class Gnome: MonoBehaviour
     {
-        public event Action OnGnomeChangeState;
-
+        public Action OnGnomeChangeState;
         [field:SerializeField] public GnomeTypes GnomeType { get; protected set; }
 
         [Header("Visuals")] 
-        [SerializeField] private Sprite furtherSprite; 
-        [SerializeField] private Sprite closerSprite;
-        [SerializeField] private Sprite screamerImageSprite;
+        [SerializeField] protected Sprite furtherSprite; 
+        [SerializeField] protected Sprite closerSprite;
+        [SerializeField] protected Sprite screamerImageSprite;
         
         [Header("Timers")]
-        [SerializeField] private float changeToCloserStateTime;
-        [SerializeField] private float changeToAttackStateTime;
-        [SerializeField] private float disappearTime;
-        [SerializeField] private float timeBeforeScreamer;
+        [SerializeField] protected float changeToCloserStateTime;
+        [SerializeField] protected float changeToAttackStateTime;
+        [SerializeField] protected float disappearTime;
+        [SerializeField] protected float timeBeforeScreamer;
         
         protected RoutePointPair _routePointPair;
-        private GnomeState _currentState;
+        protected GnomeState _currentState;
 
-        private float _timeRemaining;
-        private CancellationTokenSource _cancelChangeStateCts = new();
+        protected float _timeRemaining;
+        protected CancellationTokenSource _cancelChangeStateCts = new();
 
-        private Image _screamerUIImage;
-        private Animator _screamerAnimator;
+        protected Image _screamerUIImage;
+        protected Animator _screamerAnimator;
         protected SpriteRenderer _spriteRenderer;
         protected virtual void Start()
         {
@@ -42,7 +41,6 @@ namespace Gnomes
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _spriteRenderer.sprite = furtherSprite;
         }
-        //should be in a spawner
         public void Initialize(RoutePointPair routePointPair, Image screamerUIImage)
         {
             _screamerUIImage = screamerUIImage;
@@ -53,9 +51,10 @@ namespace Gnomes
             
             CountTimeToNextStateAsync(changeToCloserStateTime, _cancelChangeStateCts.Token).Forget();
         }
-        private void GetCloser()
+        protected virtual void GetCloser()
         {
             _currentState = GnomeState.Closer;
+            
             //todo screen blinking
             OnGnomeChangeState?.Invoke();
             
@@ -80,12 +79,10 @@ namespace Gnomes
             Time.timeScale = 0f;
         }
       
-        private void ShooGnomeAway()
+        protected void ShooGnomeAway()
         {
-            //should be invoked
-            
-            _cancelChangeStateCts.Cancel();
-            _cancelChangeStateCts.Dispose();
+            _cancelChangeStateCts?.Cancel();
+            _cancelChangeStateCts?.Dispose();
             DisappearAsync(CancellationToken.None).Forget();
         }
         private async UniTask DisappearAsync(CancellationToken token)
@@ -97,7 +94,8 @@ namespace Gnomes
             _routePointPair.IsReserved = false;
             Destroy(gameObject);
         }
-        private async UniTask CountTimeToNextStateAsync(float changeStateTime, CancellationToken token)
+
+        protected async UniTask CountTimeToNextStateAsync(float changeStateTime, CancellationToken token)
         {
             var startTime = Time.time;
             _timeRemaining = changeStateTime;
@@ -111,7 +109,11 @@ namespace Gnomes
                 _timeRemaining = changeStateTime - (Time.time - startTime);
                 await UniTask.Yield(PlayerLoopTiming.TimeUpdate);
             }
-            GoToNextState();
+
+            if (!token.IsCancellationRequested)
+            {
+                GoToNextState();
+            }
         }
 
         private void GoToNextState()

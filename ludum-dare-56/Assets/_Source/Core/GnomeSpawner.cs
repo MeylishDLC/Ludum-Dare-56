@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Gnomes;
+using Items;
 using Types;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,12 +14,17 @@ namespace Core
 {
     public class GnomeSpawner: MonoBehaviour
     {
+        [Header("MAIN")]
         [SerializeField] private Image screamerImage;
         [SerializeField] private RoutePointPair[] routes;
         [SerializeField] private Gnome[] gnomePrefabs;
 
         [Header("Timers")] 
         [SerializeField] private float timeBetweenSpawn;
+
+        [Header("Unit Stuff")] 
+        [SerializeField] private Tomato[] tomatoes;
+        [SerializeField] private SoundButton[] soundButtons;
         private void Start()
         {
             StartSpawningSequence(CancellationToken.None).Forget();
@@ -30,7 +36,6 @@ namespace Core
             {
                 await UniTask.Delay(TimeSpan.FromSeconds(timeBetweenSpawn), cancellationToken: token);
                 CheckSpawnGnome();
-                //Debug.Log("Tried to spawn");
             }
         }
         private void CheckSpawnGnome()
@@ -42,12 +47,27 @@ namespace Core
             }
             
             var roomType = freeRoute.RoomType;
+            SpawnInRoom(roomType, freeRoute);
+        }
+        private void SpawnInRoom(RoomTypes roomType, RoutePointPair freeRoute)
+        {
             if (roomType == RoomTypes.HospitalRoomLeft)
             {
                 if (TryFindGnomeByType(new [] 
                         {GnomeTypes.RadioBassLeft, GnomeTypes.TomatozillaLeft, GnomeTypes.TomatozillaRadioBassPairLeft}, out var gnome))
                 {
-                    SpawnGnome(gnome, freeRoute);
+                    if (gnome.GetType() == typeof(Tomatozilla))
+                    {
+                        SpawnTomatozilla(gnome, freeRoute);
+                    }
+                    if (gnome.GetType() == typeof(RadioBass))
+                    {
+                        SpawnRadioBass(gnome, freeRoute);
+                    }
+                    else
+                    {
+                        SpawnSpoonkin(gnome, freeRoute);
+                    }
                 }
             }
             if (roomType == RoomTypes.HospitalRoomRight)
@@ -55,7 +75,18 @@ namespace Core
                 if (TryFindGnomeByType(new [] 
                         {GnomeTypes.RadioBassRight, GnomeTypes.TomatozillaRight, GnomeTypes.TomatozillaRadioBassPairRight}, out var gnome))
                 {
-                    SpawnGnome(gnome, freeRoute);
+                    if (gnome.GetType() == typeof(Tomatozilla))
+                    {
+                        SpawnTomatozilla(gnome, freeRoute);
+                    }
+                    if (gnome.GetType() == typeof(RadioBass))
+                    {
+                        SpawnRadioBass(gnome, freeRoute);
+                    }
+                    else
+                    {
+                        SpawnSpoonkin(gnome, freeRoute);
+                    }
                 }
             }
             
@@ -63,24 +94,38 @@ namespace Core
             {
                 if (TryFindGnomeByType(GnomeTypes.RadioBass, out var gnome))
                 {
-                    SpawnGnome(gnome, freeRoute);
+                    SpawnRadioBass(gnome, freeRoute);
                 }
             }
             if (roomType == RoomTypes.CorridorFloor)
             {
                 if (TryFindGnomeByType(GnomeTypes.Spoonkin, out var gnome))
                 {
-                    SpawnGnome(gnome, freeRoute);
+                    SpawnSpoonkin(gnome, freeRoute);
                 }
             }
         }
-
-        private void SpawnGnome(Gnome gnome, RoutePointPair freeRoute)
+        private void SpawnSpoonkin(Gnome gnome, RoutePointPair freeRoute)
         {
             var spawnedGnome = Instantiate(gnome, freeRoute.FurtherPoint.position, Quaternion.identity);
             spawnedGnome.Initialize(freeRoute, screamerImage);
             freeRoute.IsReserved = true;
         }
+        private void SpawnTomatozilla(Gnome gnome, RoutePointPair freeRoute)
+        {
+            var tomatozilla = (Tomatozilla) gnome; 
+            var spawnedGnome = Instantiate(tomatozilla, freeRoute.FurtherPoint.position, Quaternion.identity);
+            spawnedGnome.Initialize(freeRoute, screamerImage, tomatoes);
+            freeRoute.IsReserved = true;
+        }
+        private void SpawnRadioBass(Gnome gnome, RoutePointPair freeRoute)
+        {
+            var radioBass = (RadioBass)gnome;
+            var spawnedGnome = Instantiate(radioBass, freeRoute.FurtherPoint.position, Quaternion.identity);
+            spawnedGnome.Initialize(freeRoute, screamerImage, soundButtons);
+            freeRoute.IsReserved = true;
+        }
+        
         private bool TryFindGnomeByType(GnomeTypes[] types, out Gnome appealingGnome)
         {
             appealingGnome = null;
