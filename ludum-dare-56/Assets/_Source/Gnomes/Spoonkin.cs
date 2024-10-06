@@ -4,6 +4,7 @@ using Camera;
 using Core;
 using Cysharp.Threading.Tasks;
 using Items;
+using Sound;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,11 +16,11 @@ namespace Gnomes
         
         private float _remainingTimeToHold;
         public override void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, 
-            CameraMovement cameraMovement)
+            CameraMovement cameraMovement, SoundManager soundManager)
         {
             _flashlight = flashlight;
             TrackFlashlightHoldTime(CancellationToken.None).Forget();
-            base.Initialize(routePointPair, screamer, flashlight, cameraMovement);
+            base.Initialize(routePointPair, screamer, flashlight, cameraMovement, soundManager);
         }
         private async UniTask TrackFlashlightHoldTime(CancellationToken token)
         {

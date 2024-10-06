@@ -4,6 +4,7 @@ using Camera;
 using Core;
 using Cysharp.Threading.Tasks;
 using Items;
+using Sound;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -21,13 +22,13 @@ namespace Gnomes
             SubscribeOnEvents(false);
         }
         public void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, 
-            CameraMovement cameraMovement, SoundButton[] soundButtons)
+            CameraMovement cameraMovement, SoundManager soundManager, SoundButton[] soundButtons)
         {
             _soundButtons = soundButtons;
             SubscribeOnEvents(true);
             
             gameObject.transform.rotation = routePointPair.FurtherPoint.rotation;
-            base.Initialize(routePointPair, screamer, flashlight, cameraMovement);
+            base.Initialize(routePointPair, screamer, flashlight, cameraMovement, soundManager);
         }
         protected override void GetCloser()
         {

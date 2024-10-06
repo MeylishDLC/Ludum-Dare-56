@@ -6,6 +6,7 @@ using Camera;
 using Cysharp.Threading.Tasks;
 using Gnomes;
 using Items;
+using Sound;
 using Types;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +18,7 @@ namespace Core
     public class GnomeSpawner : MonoBehaviour
     {
         [Header("MAIN")] 
+        [SerializeField] private Transform gnomeContainer;
         [SerializeField] private RoutePointPair[] routes;
         [SerializeField] private Gnome[] gnomePrefabs;
 
@@ -29,13 +31,16 @@ namespace Core
         private Flashlight _flashlight;
         private Screamer _screamer;
         private CameraMovement _cameraMovement;
+        private SoundManager _soundManager;
 
         [Inject]
-        public void Initialize(Screamer screamer, Flashlight flashlight, CameraMovement cameraMovement)
+        public void Initialize(Screamer screamer, Flashlight flashlight, CameraMovement cameraMovement, 
+            SoundManager soundManager)
         {
             _screamer = screamer;
             _flashlight = flashlight;
             _cameraMovement = cameraMovement;
+            _soundManager = soundManager;
         }
         private void Start()
         {
@@ -79,21 +84,27 @@ namespace Core
         private void SpawnSpoonkin(Spoonkin gnome, RoutePointPair freeRoute)
         {
             var spawnedGnome = Instantiate(gnome, freeRoute.FurtherPoint.position, Quaternion.identity);
-            spawnedGnome.Initialize(freeRoute, _screamer, _flashlight, _cameraMovement);
+            spawnedGnome.gameObject.transform.SetParent(gnomeContainer);
+
+            spawnedGnome.Initialize(freeRoute, _screamer, _flashlight, _cameraMovement, _soundManager);
             freeRoute.IsReserved = true;
         }
 
         private void SpawnTomatozilla(Tomatozilla tomatozilla, RoutePointPair freeRoute)
         {
             var spawnedGnome = Instantiate(tomatozilla, freeRoute.FurtherPoint.position, Quaternion.identity);
-            spawnedGnome.Initialize(freeRoute, _screamer, _flashlight, _cameraMovement, tomatoes);
+            spawnedGnome.gameObject.transform.SetParent(gnomeContainer);
+            
+            spawnedGnome.Initialize(freeRoute, _screamer, _flashlight, _cameraMovement, _soundManager, tomatoes);
             freeRoute.IsReserved = true;
         }
 
         private void SpawnRadioBass(RadioBass radioBass, RoutePointPair freeRoute)
         {
             var spawnedGnome = Instantiate(radioBass, freeRoute.FurtherPoint.position, Quaternion.identity);
-            spawnedGnome.Initialize(freeRoute, _screamer, _flashlight, _cameraMovement, soundButtons);
+            spawnedGnome.gameObject.transform.SetParent(gnomeContainer);
+            
+            spawnedGnome.Initialize(freeRoute, _screamer, _flashlight, _cameraMovement, _soundManager, soundButtons);
             freeRoute.IsReserved = true;
         }
         private bool TryFindGnomeByType(GnomeTypes[] types, out Gnome appealingGnome)

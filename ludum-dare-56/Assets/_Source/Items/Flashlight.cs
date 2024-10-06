@@ -1,7 +1,9 @@
 ﻿using System.Threading;
 using Cysharp.Threading.Tasks;
+using Sound;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Items
 {
@@ -19,7 +21,14 @@ namespace Items
         private int _currentBarIndex;
         private float _timeToWasteOneBar;
         private float _barTimeRemaining;
+        private SoundManager _soundManager;
         private CancellationTokenSource _cancelTrackBarsChargeCts = new();
+
+        [Inject]
+        public void Initialize(SoundManager soundManager)
+        {
+            _soundManager = soundManager;
+        }
         private void Start()
         {
             SetBars();
@@ -32,6 +41,17 @@ namespace Items
             if (!_canTurnOn)
             {
                 return;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                var mousePos = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                var hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+                if (hit.collider != null && hit.collider.gameObject == gameObject)
+                {
+                    _soundManager.PlayOneShot(_soundManager.FMODEvents.FlashlightSound);
+                }
             }
             
             if (Input.GetMouseButton(0))

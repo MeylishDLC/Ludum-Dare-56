@@ -4,6 +4,7 @@ using Camera;
 using Core;
 using Cysharp.Threading.Tasks;
 using Items;
+using Sound;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -34,6 +35,7 @@ namespace Gnomes
         private Screamer _screamer;
         private SpriteRenderer _spriteRenderer;
         private CameraMovement _cameraMovement;
+        private SoundManager _soundManager;
         
         private float _timeRemaining;
         private CancellationTokenSource _cancelChangeStateCts = new();
@@ -50,12 +52,12 @@ namespace Gnomes
                 _cancelChangeStateCts.Dispose();
             }
         }
-
         public virtual void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, 
-            CameraMovement cameraMovement)
+            CameraMovement cameraMovement, SoundManager soundManager)
         {
             _flashlight = flashlight;
             _cameraMovement = cameraMovement;
+            _soundManager = soundManager;
             
             _screamer = screamer;
             _routePointPair = routePointPair;

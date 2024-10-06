@@ -523,6 +523,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad01d02d4ed84b41b8b9df1bc9dba449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gnomeContainer: {fileID: 919595373}
+  gnomeSpawner: {fileID: 1524471413}
   restartButton: {fileID: 1403016305}
   deathScreen: {fileID: 982245282}
   winScreen: {fileID: 702433168}
@@ -1578,6 +1580,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 18985413}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &919595372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 919595373}
+  m_Layer: 0
+  m_Name: Gnomes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &919595373
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919595372}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &959142245
 GameObject:
@@ -3159,6 +3192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a179d3d38d46a28ec85ed26e138a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gnomeContainer: {fileID: 919595373}
   routes:
   - <FurtherPoint>k__BackingField: {fileID: 974499861}
     <CloserPoint>k__BackingField: {fileID: 903337673}
@@ -3712,3 +3746,4 @@ SceneRoots:
   - {fileID: 1376592514}
   - {fileID: 168658908}
   - {fileID: 31851301}
+  - {fileID: 919595373}

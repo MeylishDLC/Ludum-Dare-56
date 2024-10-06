@@ -1,6 +1,7 @@
 ﻿using Camera;
 using Core;
 using Items;
+using Sound;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -18,11 +19,11 @@ namespace Gnomes
             SubscribeOnEvents(false);
         }
         public void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, 
-            CameraMovement cameraMovement, Tomato[] tomatoes)
+            CameraMovement cameraMovement, SoundManager soundManager, Tomato[] tomatoes)
         {
             _allTomatoes = tomatoes;
             SubscribeOnEvents(true);
-            base.Initialize(routePointPair, screamer, flashlight, cameraMovement);
+            base.Initialize(routePointPair, screamer, flashlight, cameraMovement, soundManager);
         }
         private void OnTomatoClicked()
         {
