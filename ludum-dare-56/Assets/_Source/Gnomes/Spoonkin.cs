@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Camera;
 using Core;
 using Cysharp.Threading.Tasks;
 using Items;
@@ -13,11 +14,12 @@ namespace Gnomes
         [SerializeField] private float timeToHoldFlashlight;
         
         private float _remainingTimeToHold;
-        public override void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight)
+        public override void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, 
+            CameraMovement cameraMovement)
         {
             _flashlight = flashlight;
             TrackFlashlightHoldTime(CancellationToken.None).Forget();
-            base.Initialize(routePointPair, screamer, flashlight);
+            base.Initialize(routePointPair, screamer, flashlight, cameraMovement);
         }
         private async UniTask TrackFlashlightHoldTime(CancellationToken token)
         {

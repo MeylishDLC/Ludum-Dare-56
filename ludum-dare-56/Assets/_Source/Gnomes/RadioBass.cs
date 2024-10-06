@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Camera;
 using Core;
 using Cysharp.Threading.Tasks;
 using Items;
@@ -19,13 +20,14 @@ namespace Gnomes
         {
             SubscribeOnEvents(false);
         }
-        public void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, SoundButton[] soundButtons)
+        public void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, 
+            CameraMovement cameraMovement, SoundButton[] soundButtons)
         {
             _soundButtons = soundButtons;
             SubscribeOnEvents(true);
             
             gameObject.transform.rotation = routePointPair.FurtherPoint.rotation;
-            base.Initialize(routePointPair, screamer, flashlight);
+            base.Initialize(routePointPair, screamer, flashlight, cameraMovement);
         }
         protected override void GetCloser()
         {

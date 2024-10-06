@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Camera;
 using Core;
 using Cysharp.Threading.Tasks;
 using Items;
@@ -32,6 +33,7 @@ namespace Gnomes
         
         private Screamer _screamer;
         private SpriteRenderer _spriteRenderer;
+        private CameraMovement _cameraMovement;
         
         private float _timeRemaining;
         private CancellationTokenSource _cancelChangeStateCts = new();
@@ -49,9 +51,11 @@ namespace Gnomes
             }
         }
 
-        public virtual void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight)
+        public virtual void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, 
+            CameraMovement cameraMovement)
         {
             _flashlight = flashlight;
+            _cameraMovement = cameraMovement;
             
             _screamer = screamer;
             _routePointPair = routePointPair;
@@ -66,7 +70,6 @@ namespace Gnomes
         {
             _currentState = GnomeState.Closer;
             
-            //todo screen blinking
             OnGnomeChangeState?.Invoke();
             
             gameObject.transform.position = _routePointPair.CloserPoint.position;
@@ -85,6 +88,7 @@ namespace Gnomes
             _flashlight.DisableFlashlight(true);
             await UniTask.Delay(TimeSpan.FromSeconds(timeBeforeScreamer), cancellationToken: token);
 
+            _cameraMovement.EnableCameraMovement(false);
             _screamer.ShowScreamer(screamerImageSprite);
             Debug.Log("Boo game over");
         }
@@ -103,7 +107,6 @@ namespace Gnomes
         {
             await UniTask.Delay(TimeSpan.FromSeconds(disappearTime), cancellationToken: token);
             
-            //todo light blinking 
             OnGnomeChangeState?.Invoke();
             _routePointPair.IsReserved = false;
             Destroy(gameObject);

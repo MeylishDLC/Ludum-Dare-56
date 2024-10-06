@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Camera;
 using Cysharp.Threading.Tasks;
 using Gnomes;
 using Items;
@@ -27,12 +28,14 @@ namespace Core
         
         private Flashlight _flashlight;
         private Screamer _screamer;
+        private CameraMovement _cameraMovement;
 
         [Inject]
-        public void Initialize(Screamer screamer, Flashlight flashlight)
+        public void Initialize(Screamer screamer, Flashlight flashlight, CameraMovement cameraMovement)
         {
             _screamer = screamer;
             _flashlight = flashlight;
+            _cameraMovement = cameraMovement;
         }
         private void Start()
         {
@@ -76,21 +79,21 @@ namespace Core
         private void SpawnSpoonkin(Spoonkin gnome, RoutePointPair freeRoute)
         {
             var spawnedGnome = Instantiate(gnome, freeRoute.FurtherPoint.position, Quaternion.identity);
-            spawnedGnome.Initialize(freeRoute, _screamer, _flashlight);
+            spawnedGnome.Initialize(freeRoute, _screamer, _flashlight, _cameraMovement);
             freeRoute.IsReserved = true;
         }
 
         private void SpawnTomatozilla(Tomatozilla tomatozilla, RoutePointPair freeRoute)
         {
             var spawnedGnome = Instantiate(tomatozilla, freeRoute.FurtherPoint.position, Quaternion.identity);
-            spawnedGnome.Initialize(freeRoute, _screamer, _flashlight, tomatoes);
+            spawnedGnome.Initialize(freeRoute, _screamer, _flashlight, _cameraMovement, tomatoes);
             freeRoute.IsReserved = true;
         }
 
         private void SpawnRadioBass(RadioBass radioBass, RoutePointPair freeRoute)
         {
             var spawnedGnome = Instantiate(radioBass, freeRoute.FurtherPoint.position, Quaternion.identity);
-            spawnedGnome.Initialize(freeRoute, _screamer, _flashlight, soundButtons);
+            spawnedGnome.Initialize(freeRoute, _screamer, _flashlight, _cameraMovement, soundButtons);
             freeRoute.IsReserved = true;
         }
         private bool TryFindGnomeByType(GnomeTypes[] types, out Gnome appealingGnome)

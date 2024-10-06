@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using Camera;
+using Core;
 using Items;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -16,11 +17,12 @@ namespace Gnomes
         {
             SubscribeOnEvents(false);
         }
-        public void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, Tomato[] tomatoes)
+        public void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, 
+            CameraMovement cameraMovement, Tomato[] tomatoes)
         {
             _allTomatoes = tomatoes;
             SubscribeOnEvents(true);
-            base.Initialize(routePointPair, screamer, flashlight);
+            base.Initialize(routePointPair, screamer, flashlight, cameraMovement);
         }
         private void OnTomatoClicked()
         {

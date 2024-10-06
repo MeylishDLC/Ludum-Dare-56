@@ -22,6 +22,7 @@ namespace Environment
         
         private Flashlight _flashlight;
         private float _originalIntensity;
+        private bool _isBlinking;
 
         [Inject]
         public void Initialize(Flashlight flashlight)
@@ -36,10 +37,15 @@ namespace Environment
         }
         private void TriggerBlink()
         {
-            BlinkAsync().Forget();
+            if (!_isBlinking)
+            {
+                BlinkAsync().Forget();
+            }
         }
         private async UniTask BlinkAsync()
         {
+            _isBlinking = true;
+            
             _flashlight.DisableFlashlight(true);
             var blinkAmount = Random.Range(minBlinkAmount, maxBlinkAmount + 1);
             var timeForOneBlink = lightBlinkDuration / blinkAmount;
@@ -52,6 +58,7 @@ namespace Environment
                     timeForOneBlink / 2, CancellationToken.None);
             }
             _flashlight.DisableFlashlight(false);
+            _isBlinking = false;
         }
         
         private async UniTask SmoothTransition(float startIntensity, float endIntensity, float duration, CancellationToken token)

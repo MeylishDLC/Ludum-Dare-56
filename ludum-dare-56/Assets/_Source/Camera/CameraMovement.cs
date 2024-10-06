@@ -23,12 +23,18 @@ namespace Camera
         private Vector3 _initialPosition;
         private Positions _currentPosition = Positions.Middle;
         private bool _isMoving;
+        private bool _canMove = true;
         private void Start() 
         {
             _initialPosition = transform.position;
         }
         private void Update()
         {
+            if (!_canMove)
+            {
+                return;
+            }
+            
             if (_isMoving)
             {
                 return;
@@ -61,7 +67,10 @@ namespace Camera
                 }
             }
         }
-
+        public void EnableCameraMovement(bool enable)
+        {
+            _canMove = enable;
+        }
         private async UniTask MoveCameraAsync(Positions targetPosition)
         {
             if (_isMoving)

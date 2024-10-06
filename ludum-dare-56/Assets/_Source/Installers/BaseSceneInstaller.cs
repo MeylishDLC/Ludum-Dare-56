@@ -1,3 +1,5 @@
+using Camera;
+using Core;
 using Gnomes;
 using Items;
 using UnityEngine;
@@ -9,10 +11,14 @@ namespace Installers
     {
         [SerializeField] private Screamer screamer;
         [SerializeField] private Flashlight flashlight;
+        [SerializeField] private NightTimeTracker nightTimeTracker;
+        [SerializeField] private CameraMovement cameraMovement;
         public override void InstallBindings()
         {
             BindScreamer();
             BindFlashlight();
+            BindNightTimeTracker();
+            BindCameraMovement();
         }
         private void BindScreamer()
         {
@@ -21,6 +27,14 @@ namespace Installers
         private void BindFlashlight()
         {
             Container.Bind<Flashlight>().FromInstance(flashlight).AsSingle();
+        }
+        private void BindNightTimeTracker()
+        {
+            Container.Bind<NightTimeTracker>().FromInstance(nightTimeTracker).AsSingle();
+        }
+        private void BindCameraMovement()
+        {
+            Container.Bind<CameraMovement>().FromInstance(cameraMovement).AsSingle();
         }
     }
 }
