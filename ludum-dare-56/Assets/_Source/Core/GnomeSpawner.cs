@@ -23,7 +23,9 @@ namespace Core
         [SerializeField] private RoutePointPair[] routes;
         [SerializeField] private Gnome[] gnomePrefabs;
 
-        [Header("Timers")] [SerializeField] private float timeBetweenSpawn;
+        [Header("Timers")] 
+        [SerializeField] private float maxTimeBetweenSpawn;
+        [SerializeField] private float minTimeBetweenSpawn;
 
         [Header("Unit Stuff")] 
         [SerializeField] private Tomato[] tomatoes;
@@ -60,7 +62,8 @@ namespace Core
         {
             while (!token.IsCancellationRequested)
             {
-                await UniTask.Delay(TimeSpan.FromSeconds(timeBetweenSpawn), cancellationToken: token);
+                var randomTime = Random.Range(minTimeBetweenSpawn, maxTimeBetweenSpawn);
+                await UniTask.Delay(TimeSpan.FromSeconds(randomTime), cancellationToken: token);
                 CheckSpawnGnome();
             }
         }

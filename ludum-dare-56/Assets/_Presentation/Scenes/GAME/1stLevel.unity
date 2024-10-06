@@ -855,7 +855,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3484,7 +3484,8 @@ MonoBehaviour:
   - {fileID: 5482374751206655265, guid: 5263b9b59f5967d458148e9cf6e51b54, type: 3}
   - {fileID: 684426545325050221, guid: 6ed3b8ed811eb634a9a80b7fa6fa6585, type: 3}
   - {fileID: 6534547043559985990, guid: a2899a0d3a12c1c458ce8ce8538fb227, type: 3}
-  timeBetweenSpawn: 10
+  maxTimeBetweenSpawn: 17
+  minTimeBetweenSpawn: 7
   tomatoes:
   - {fileID: 1413386564}
   - {fileID: 564296241}
