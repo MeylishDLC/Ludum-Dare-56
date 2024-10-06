@@ -841,6 +841,7 @@ GameObject:
   m_Component:
   - component: {fileID: 619394802}
   - component: {fileID: 619394801}
+  - component: {fileID: 619394803}
   m_Layer: 0
   m_Name: Global Light 2D
   m_TagString: Untagged
@@ -913,6 +914,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &619394803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619394800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c58d59faef24fc191dfedc6dc9035ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseSceneLight: {fileID: 619394801}
+  minDimValue: 0.002
+  lightBlinkDuration: 0.5
+  smoothDuration: 0.08
+  maxBlinkAmount: 2
+  minBlinkAmount: 1
 --- !u!1 &638980155
 GameObject:
   m_ObjectHideFlags: 0
@@ -3086,7 +3105,6 @@ MonoBehaviour:
   soundButtons:
   - {fileID: 959142248}
   - {fileID: 1128424427}
-  flashlight: {fileID: 1047974801}
 --- !u!1 &1553196293
 GameObject:
   m_ObjectHideFlags: 0
@@ -3364,6 +3382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screamer: {fileID: 1224685985}
+  flashlight: {fileID: 1047974801}
 --- !u!1 &2021066516
 GameObject:
   m_ObjectHideFlags: 0

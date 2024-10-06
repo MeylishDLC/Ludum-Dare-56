@@ -28,6 +28,7 @@ namespace Gnomes
         {
             _screamerUIImage.gameObject.SetActive(true);
             _screamerUIImage.sprite = screamerSprite;
+            //todo play animation
             await UniTask.Delay(TimeSpan.FromSeconds(timeForScreamer), cancellationToken: token);
             OnPlayerDeath?.Invoke();
         }

@@ -12,7 +12,7 @@ namespace Gnomes
 {
     public abstract class Gnome: MonoBehaviour
     {
-        public Action OnGnomeChangeState;
+        public static Action OnGnomeChangeState;
         [field:SerializeField] public GnomeTypes GnomeType { get; protected set; }
 
         [Header("Visuals")] 
@@ -82,7 +82,7 @@ namespace Gnomes
             gameObject.SetActive(false);
             
             Debug.Log("Counting time to screamer");
-            _flashlight.DisableFlashlight();
+            _flashlight.DisableFlashlight(true);
             await UniTask.Delay(TimeSpan.FromSeconds(timeBeforeScreamer), cancellationToken: token);
 
             _screamer.ShowScreamer(screamerImageSprite);

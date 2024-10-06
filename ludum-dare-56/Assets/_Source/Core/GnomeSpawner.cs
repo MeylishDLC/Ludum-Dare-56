@@ -23,15 +23,16 @@ namespace Core
 
         [Header("Unit Stuff")] 
         [SerializeField] private Tomato[] tomatoes;
-        [SerializeField] private SoundButton[] soundButtons;
-        [SerializeField] private Flashlight flashlight;
-
+        [SerializeField] private SoundButton[] soundButtons; 
+        
+        private Flashlight _flashlight;
         private Screamer _screamer;
 
         [Inject]
-        public void Initialize(Screamer screamer)
+        public void Initialize(Screamer screamer, Flashlight flashlight)
         {
             _screamer = screamer;
+            _flashlight = flashlight;
         }
         private void Start()
         {
@@ -75,21 +76,21 @@ namespace Core
         private void SpawnSpoonkin(Spoonkin gnome, RoutePointPair freeRoute)
         {
             var spawnedGnome = Instantiate(gnome, freeRoute.FurtherPoint.position, Quaternion.identity);
-            spawnedGnome.Initialize(freeRoute, _screamer, flashlight);
+            spawnedGnome.Initialize(freeRoute, _screamer, _flashlight);
             freeRoute.IsReserved = true;
         }
 
         private void SpawnTomatozilla(Tomatozilla tomatozilla, RoutePointPair freeRoute)
         {
             var spawnedGnome = Instantiate(tomatozilla, freeRoute.FurtherPoint.position, Quaternion.identity);
-            spawnedGnome.Initialize(freeRoute, _screamer, flashlight, tomatoes);
+            spawnedGnome.Initialize(freeRoute, _screamer, _flashlight, tomatoes);
             freeRoute.IsReserved = true;
         }
 
         private void SpawnRadioBass(RadioBass radioBass, RoutePointPair freeRoute)
         {
             var spawnedGnome = Instantiate(radioBass, freeRoute.FurtherPoint.position, Quaternion.identity);
-            spawnedGnome.Initialize(freeRoute, _screamer, flashlight, soundButtons);
+            spawnedGnome.Initialize(freeRoute, _screamer, _flashlight, soundButtons);
             freeRoute.IsReserved = true;
         }
         private bool TryFindGnomeByType(GnomeTypes[] types, out Gnome appealingGnome)

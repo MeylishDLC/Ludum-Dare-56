@@ -53,10 +53,17 @@ namespace Items
                 TurnOnFlashlight(false);
             }
         }
-        public void DisableFlashlight()
+        public void DisableFlashlight(bool disable)
         {
-            _canTurnOn = false;
-            TurnOnFlashlight(false);
+            if (disable)
+            {
+                _canTurnOn = false;
+                TurnOnFlashlight(false);
+            }
+            else
+            {
+                _canTurnOn = true;
+            }
         }
         private void SetBars()
         {
