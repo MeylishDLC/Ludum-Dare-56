@@ -3,6 +3,7 @@ using System.Threading;
 using Camera;
 using Core;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using FMODUnity;
 using Items;
 using Sound;
@@ -41,11 +42,6 @@ namespace Gnomes
         
         private float _timeRemaining;
         private CancellationTokenSource _cancelChangeStateCts = new();
-        protected virtual void Start()
-        {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-            _spriteRenderer.sprite = furtherSprite;
-        }
         private void OnDestroy()
         {
             if (_cancelChangeStateCts != null)
@@ -57,6 +53,9 @@ namespace Gnomes
         public virtual void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, 
             CameraMovement cameraMovement, SoundManager soundManager)
         {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _spriteRenderer.sprite = furtherSprite;
+            
             _flashlight = flashlight;
             _cameraMovement = cameraMovement;
             _soundManager = soundManager;
@@ -65,7 +64,13 @@ namespace Gnomes
             _routePointPair = routePointPair;
             _routePointPair.IsReserved = true;
             
+            Appear(CancellationToken.None).Forget();
+        }
+        private async UniTask Appear(CancellationToken token)
+        {
             _currentState = GnomeState.Appeared;
+            await _spriteRenderer.DOFade(0f, 0f).ToUniTask(cancellationToken: token);
+            await _spriteRenderer.DOFade(1f, 0.5f).ToUniTask(cancellationToken: token);
             
             CheckCts();
             CountTimeToNextStateAsync(changeToCloserStateTime, _cancelChangeStateCts.Token).Forget();
