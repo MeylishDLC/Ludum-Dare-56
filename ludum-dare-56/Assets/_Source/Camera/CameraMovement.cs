@@ -82,17 +82,17 @@ namespace Camera
             switch (targetPosition)
             {
                 case Positions.Left:
-                    await transform.DOLocalMoveX(maxLeftPositionX, moveDuration).ToUniTask();
+                    await transform.DOLocalMoveX(maxLeftPositionX, moveDuration).SetEase(Ease.InOutSine);
                     _currentPosition = Positions.Left;
                     break;
                 
                 case Positions.Middle:
-                    await transform.DOLocalMoveX(_initialPosition.x, moveDuration).ToUniTask();
+                    await transform.DOLocalMoveX(_initialPosition.x, moveDuration).SetEase(Ease.InOutSine);
                     _currentPosition = Positions.Middle;
                     break;
                 
                 case Positions.Right:
-                    await transform.DOLocalMoveX(maxRightPositionX, moveDuration).ToUniTask();
+                    await transform.DOLocalMoveX(maxRightPositionX, moveDuration).SetEase(Ease.InOutSine);
                     _currentPosition = Positions.Right;
                     break;
                 default:

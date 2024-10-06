@@ -17,8 +17,9 @@ namespace Core
 {
     public class GnomeSpawner : MonoBehaviour
     {
-            
+
         [Header("MAIN")] 
+        [SerializeField] private float percentageAmountToSpawnTwoAtOnce;
         [SerializeField] private Transform gnomeContainer;
         [SerializeField] private RoutePointPair[] routes;
         [SerializeField] private Gnome[] gnomePrefabs;
@@ -64,7 +65,18 @@ namespace Core
             {
                 var randomTime = Random.Range(minTimeBetweenSpawn, maxTimeBetweenSpawn);
                 await UniTask.Delay(TimeSpan.FromSeconds(randomTime), cancellationToken: token);
-                CheckSpawnGnome();
+                
+                var randomValue = Random.Range(0f, 100f);
+            
+                if (randomValue <= percentageAmountToSpawnTwoAtOnce)
+                {
+                    CheckSpawnGnome();
+                    CheckSpawnGnome();
+                }
+                else
+                {
+                    CheckSpawnGnome();
+                }
             }
         }
         private void CheckSpawnGnome()

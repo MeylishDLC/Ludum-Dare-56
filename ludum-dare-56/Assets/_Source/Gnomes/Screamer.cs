@@ -18,6 +18,7 @@ namespace Gnomes
         private Image _screamerUIImage;
         private Animator _screamerAnimator;
         private SoundManager _soundManager;
+        private static readonly int Shake = Animator.StringToHash("shake");
 
         [Inject]
         public void Initialize(SoundManager soundManager)
@@ -39,8 +40,7 @@ namespace Gnomes
             _screamerUIImage.gameObject.SetActive(true);
             _screamerUIImage.sprite = screamerSprite;
             _soundManager.PlayOneShot(sound);
-            //todo play animation
-            //todo play sound
+            _screamerAnimator.SetTrigger(Shake);
             
             await UniTask.Delay(TimeSpan.FromSeconds(timeForScreamer), cancellationToken: token);
             OnPlayerDeath?.Invoke();

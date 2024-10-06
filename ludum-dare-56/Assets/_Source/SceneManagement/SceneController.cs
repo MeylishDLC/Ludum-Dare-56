@@ -17,7 +17,6 @@ namespace SceneManagement
     public class SceneController: MonoBehaviour
     {
         public event Action OnLevelWon;
-        public bool IsPaused { get; private set; }
         
         [SerializeField] private Transform gnomeContainer;
         [SerializeField] private GnomeSpawner gnomeSpawner;
@@ -28,6 +27,7 @@ namespace SceneManagement
         [SerializeField] private Image deathScreen;
         [SerializeField] private Image winScreen;
         [SerializeField] private float winScreenFadeTime;
+        [SerializeField] private float deathScreenFadeTime;
         [SerializeField] private float timeToMoveToNextLevel;
         
         private Screamer _screamer;
@@ -55,9 +55,10 @@ namespace SceneManagement
         private void OnGameLose()
         {
             ClearScene();
-            _cameraMovement.EnableCameraMovement(false);
-            deathScreen.gameObject.SetActive(true);
             _soundManager.SetMusicArea(MusicAct.GameLose);
+            
+            _cameraMovement.EnableCameraMovement(false);
+            ShowDeathScreenAsync(CancellationToken.None).Forget();
         }
         private void OnGameWin()
         {
@@ -82,6 +83,12 @@ namespace SceneManagement
             await winScreen.DOFade(1f, winScreenFadeTime).ToUniTask(cancellationToken: token);
             await UniTask.Delay(TimeSpan.FromSeconds(timeToMoveToNextLevel), cancellationToken: token);
             OnLevelWon?.Invoke();
+        } 
+        private async UniTask ShowDeathScreenAsync(CancellationToken token)
+        {
+            deathScreen.gameObject.SetActive(true);
+            await deathScreen.DOFade(0f, 0f).ToUniTask(cancellationToken: token);
+            await deathScreen.DOFade(1f, deathScreenFadeTime).ToUniTask(cancellationToken: token);
         }
         private void RestartScene()
         {
@@ -90,17 +97,6 @@ namespace SceneManagement
             var scene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(scene);
             _soundManager.SetMusicArea(MusicAct.Game);
-            ResumeGame();
-        }
-        private void PauseGame()
-        {
-            Time.timeScale = 0f;
-            IsPaused = true;
-        }
-        private void ResumeGame()
-        {
-            Time.timeScale = 1f;
-            IsPaused = false;
         }
     }
 }
