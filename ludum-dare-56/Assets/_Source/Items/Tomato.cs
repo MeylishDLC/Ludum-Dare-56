@@ -12,6 +12,12 @@ namespace Items
         [SerializeField] private float cooldown;
 
         private bool _isOnCooldown;
+        private Animator _animator;
+        private static readonly int property = Animator.StringToHash("throw");
+        private void Start()
+        {
+            _animator = GetComponent<Animator>();
+        }
         private void Update()
         {
             if (Input.GetMouseButtonDown(0))
@@ -24,6 +30,7 @@ namespace Items
                     if (!_isOnCooldown)
                     {
                         Debug.Log("Tomato thrown");
+                        _animator.SetTrigger(property);
                         OnTomatoClicked?.Invoke();
                         StartCooldownAsync(CancellationToken.None).Forget();
                     }
