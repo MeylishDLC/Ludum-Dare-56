@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Camera;
 using Core;
 using Cysharp.Threading.Tasks;
@@ -14,9 +15,9 @@ namespace SceneManagement
 {
     public class SceneController: MonoBehaviour
     {
+        public event Action OnLevelWon;
         public bool IsPaused { get; private set; }
-
-        [SerializeField] private NextSceneScenarios nextSceneScenario;
+        
         [SerializeField] private Transform gnomeContainer;
         [SerializeField] private GnomeSpawner gnomeSpawner;
         
@@ -25,6 +26,7 @@ namespace SceneManagement
         [SerializeField] private Image deathScreen;
         [SerializeField] private Image winScreen;
         [SerializeField] private float winScreenFadeTime;
+        [SerializeField] private float timeToMoveToNextLevel;
         
         private Screamer _screamer;
         private NightTimeTracker _nightTimeTracker;
@@ -67,23 +69,15 @@ namespace SceneManagement
         private void ClearScene()
         {
             Destroy(gnomeContainer.gameObject);
-            Destroy(gnomeSpawner.gameObject);
+            gnomeSpawner.StopSpawning();
         }
         private async UniTask ShowWinScreenAsync(CancellationToken token)
         {
             winScreen.gameObject.SetActive(true);
             await winScreen.DOFade(0f, 0f).ToUniTask(cancellationToken: token);
             await winScreen.DOFade(1f, winScreenFadeTime).ToUniTask(cancellationToken: token);
-
-            if (nextSceneScenario == NextSceneScenarios.ShowEnding)
-            {
-                
-            }
-            else
-            {
-                
-            }
-            //todo continue game (show pictures of lore OR )
+            await UniTask.Delay(TimeSpan.FromSeconds(timeToMoveToNextLevel), cancellationToken: token);
+            OnLevelWon?.Invoke();
         }
         private void RestartScene()
         {

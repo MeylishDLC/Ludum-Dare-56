@@ -12,17 +12,17 @@ namespace Gnomes
     {
         [SerializeField] private int tomatoesAmountToShoo;
 
-        private Tomato[] _allTomatoes;
+        private Tomato _tomato;
         private int _currentTomatoAmount;
         private void OnDestroy()
         {
-            SubscribeOnEvents(false);
+            _tomato.OnTomatoClicked -= OnTomatoClicked;
         }
         public void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, 
-            CameraMovement cameraMovement, SoundManager soundManager, Tomato[] tomatoes)
+            CameraMovement cameraMovement, SoundManager soundManager, Tomato tomato)
         {
-            _allTomatoes = tomatoes;
-            SubscribeOnEvents(true);
+            _tomato = tomato;
+            _tomato.OnTomatoClicked += OnTomatoClicked;
             base.Initialize(routePointPair, screamer, flashlight, cameraMovement, soundManager);
         }
         private void OnTomatoClicked()
@@ -41,25 +41,8 @@ namespace Gnomes
                 }
             }
             ShooGnomeAway();
-            SubscribeOnEvents(false);
+            _tomato.OnTomatoClicked -= OnTomatoClicked;
         }
-
-        private void SubscribeOnEvents(bool subscribe)
-        {
-            if (subscribe)
-            {
-                foreach (var tomato in _allTomatoes)
-                {
-                    tomato.OnTomatoClicked += OnTomatoClicked;
-                }
-            }
-            else
-            {
-                foreach (var tomato in _allTomatoes)
-                {
-                    tomato.OnTomatoClicked -= OnTomatoClicked;
-                }
-            }
-        }
+        
     }
 }

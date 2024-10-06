@@ -1,11 +1,10 @@
-using System;
 using Sound;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 
-namespace _Presentation.Scenes.GAME
+namespace UI
 {
     public class MainMenu : MonoBehaviour
     {
@@ -26,7 +25,7 @@ namespace _Presentation.Scenes.GAME
         private void StartGame()
         {
             startGameButton.interactable = false;
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("1stLevel");
             _soundManager.SetMusicArea(MusicAct.Game);
         }
     }

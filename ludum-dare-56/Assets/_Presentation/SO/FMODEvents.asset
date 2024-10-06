@@ -18,4 +18,11 @@ MonoBehaviour:
       Data2: 1166609914
       Data3: 1830549635
       Data4: 1475066470
-    Path: event:/GameMusicActs
+    Path: event:/Music/GameMusicActs
+  <FlashlightSound>k__BackingField:
+    Guid:
+      Data1: -1466972376
+      Data2: 1196910722
+      Data3: 299118726
+      Data4: 1241783578
+    Path: event:/SFX/Flashlight

@@ -8,7 +8,7 @@
         RadioBassLeft,
         RadioBassRight,
         Spoonkin,
-        TomatozillaRadioBassPairLeft,
-        TomatozillaRadioBassPairRight
+        RadiozillaLeft,
+        RadiozillaRight
     }
 }
