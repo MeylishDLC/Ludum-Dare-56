@@ -2243,7 +2243,7 @@ MonoBehaviour:
   - {fileID: 1291135102}
   - {fileID: 159908873}
   lightObject: {fileID: 520185533}
-  chargeTime: 60
+  chargeTime: 30
 --- !u!1 &1088447346
 GameObject:
   m_ObjectHideFlags: 0

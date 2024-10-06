@@ -11,6 +11,9 @@ namespace Sound
 {
     public class SoundManager : MonoBehaviour
     {
+        [BankRef]
+        public List<string> Banks;
+        
         [Header("Volume")] 
         [Range(0, 1)] public float masterVolume = 1;
         [Range(0, 1)] public float musicVolume = 1;
@@ -28,7 +31,12 @@ namespace Sound
         [Inject]
         public void Initialize()
         {
+            LoadBanks();
             GetBuses();
+        }
+        private void Start()
+        {
+            InitializeMusic(FMODEvents.GameMusic);
         }
         private void Update()
         {
@@ -94,6 +102,17 @@ namespace Sound
             masterBus = RuntimeManager.GetBus("bus:/");
             musicBus = RuntimeManager.GetBus("bus:/Music");
             sfxBus = RuntimeManager.GetBus("bus:/SFX");
+        }
+        private void LoadBanks()
+        {
+            foreach (var b in Banks)
+            {
+                RuntimeManager.LoadBank(b, true);
+                Debug.Log("Loaded bank " + b);
+            }
+
+            RuntimeManager.CoreSystem.mixerSuspend();
+            RuntimeManager.CoreSystem.mixerResume();
         }
     }
     
