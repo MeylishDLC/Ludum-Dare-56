@@ -16,14 +16,19 @@ namespace Gnomes
         {
             SubscribeOnEvents(false);
         }
-        public void Initialize(RoutePointPair routePointPair, Image screamerUIImage, Tomato[] tomatoes)
+        public void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, Tomato[] tomatoes)
         {
             _allTomatoes = tomatoes;
             SubscribeOnEvents(true);
-            base.Initialize(routePointPair, screamerUIImage);
+            base.Initialize(routePointPair, screamer, flashlight);
         }
         private void OnTomatoClicked()
         {
+            if (_currentState != GnomeState.Closer)
+            {
+                return;
+            }
+            
             if (_currentTomatoAmount < tomatoesAmountToShoo)
             {
                 _currentTomatoAmount++;

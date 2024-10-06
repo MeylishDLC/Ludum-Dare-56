@@ -8,13 +8,14 @@ using Items;
 using Types;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace Core
 {
     public class GnomeSpawner : MonoBehaviour
     {
-        [Header("MAIN")] [SerializeField] private Image screamerImage;
+        [Header("MAIN")] 
         [SerializeField] private RoutePointPair[] routes;
         [SerializeField] private Gnome[] gnomePrefabs;
 
@@ -24,6 +25,14 @@ namespace Core
         [SerializeField] private Tomato[] tomatoes;
         [SerializeField] private SoundButton[] soundButtons;
         [SerializeField] private Flashlight flashlight;
+
+        private Screamer _screamer;
+
+        [Inject]
+        public void Initialize(Screamer screamer)
+        {
+            _screamer = screamer;
+        }
         private void Start()
         {
             StartSpawningSequence(CancellationToken.None).Forget();
@@ -66,21 +75,21 @@ namespace Core
         private void SpawnSpoonkin(Spoonkin gnome, RoutePointPair freeRoute)
         {
             var spawnedGnome = Instantiate(gnome, freeRoute.FurtherPoint.position, Quaternion.identity);
-            spawnedGnome.Initialize(freeRoute, screamerImage, flashlight);
+            spawnedGnome.Initialize(freeRoute, _screamer, flashlight);
             freeRoute.IsReserved = true;
         }
 
         private void SpawnTomatozilla(Tomatozilla tomatozilla, RoutePointPair freeRoute)
         {
             var spawnedGnome = Instantiate(tomatozilla, freeRoute.FurtherPoint.position, Quaternion.identity);
-            spawnedGnome.Initialize(freeRoute, screamerImage, tomatoes);
+            spawnedGnome.Initialize(freeRoute, _screamer, flashlight, tomatoes);
             freeRoute.IsReserved = true;
         }
 
         private void SpawnRadioBass(RadioBass radioBass, RoutePointPair freeRoute)
         {
             var spawnedGnome = Instantiate(radioBass, freeRoute.FurtherPoint.position, Quaternion.identity);
-            spawnedGnome.Initialize(freeRoute, screamerImage, soundButtons);
+            spawnedGnome.Initialize(freeRoute, _screamer, flashlight, soundButtons);
             freeRoute.IsReserved = true;
         }
         private bool TryFindGnomeByType(GnomeTypes[] types, out Gnome appealingGnome)

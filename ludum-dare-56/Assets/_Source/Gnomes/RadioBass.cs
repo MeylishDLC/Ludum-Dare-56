@@ -19,13 +19,13 @@ namespace Gnomes
         {
             SubscribeOnEvents(false);
         }
-        public void Initialize(RoutePointPair routePointPair, Image screamerUIImage, SoundButton[] soundButtons)
+        public void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, SoundButton[] soundButtons)
         {
             _soundButtons = soundButtons;
             SubscribeOnEvents(true);
             
             gameObject.transform.rotation = routePointPair.FurtherPoint.rotation;
-            base.Initialize(routePointPair, screamerUIImage);
+            base.Initialize(routePointPair, screamer, flashlight);
         }
         protected override void GetCloser()
         {

@@ -13,12 +13,11 @@ namespace Gnomes
         [SerializeField] private float timeToHoldFlashlight;
         
         private float _remainingTimeToHold;
-        private Flashlight _flashlight;
-        public void Initialize(RoutePointPair routePointPair, Image screamerUIImage, Flashlight flashlight)
+        public override void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight)
         {
             _flashlight = flashlight;
             TrackFlashlightHoldTime(CancellationToken.None).Forget();
-            base.Initialize(routePointPair, screamerUIImage);
+            base.Initialize(routePointPair, screamer, flashlight);
         }
         private async UniTask TrackFlashlightHoldTime(CancellationToken token)
         {

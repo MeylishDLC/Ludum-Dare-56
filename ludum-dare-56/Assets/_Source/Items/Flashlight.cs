@@ -53,6 +53,11 @@ namespace Items
                 TurnOnFlashlight(false);
             }
         }
+        public void DisableFlashlight()
+        {
+            _canTurnOn = false;
+            TurnOnFlashlight(false);
+        }
         private void SetBars()
         {
             _currentBarIndex = chargeBars.Length - 1;

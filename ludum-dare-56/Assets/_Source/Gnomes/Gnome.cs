@@ -2,6 +2,7 @@
 using System.Threading;
 using Core;
 using Cysharp.Threading.Tasks;
+using Items;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -27,17 +28,15 @@ namespace Gnomes
         
         protected RoutePointPair _routePointPair;
         protected GnomeState _currentState;
-
-        private Image _screamerUIImage;
-        private Animator _screamerAnimator;
+        protected Flashlight _flashlight;
+        
+        private Screamer _screamer;
         private SpriteRenderer _spriteRenderer;
         
         private float _timeRemaining;
         private CancellationTokenSource _cancelChangeStateCts = new();
         protected virtual void Start()
         {
-            _screamerUIImage.gameObject.SetActive(false);
-            _screamerAnimator = _screamerUIImage.GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _spriteRenderer.sprite = furtherSprite;
         }
@@ -49,9 +48,12 @@ namespace Gnomes
                 _cancelChangeStateCts.Dispose();
             }
         }
-        protected void Initialize(RoutePointPair routePointPair, Image screamerUIImage)
+
+        public virtual void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight)
         {
-            _screamerUIImage = screamerUIImage;
+            _flashlight = flashlight;
+            
+            _screamer = screamer;
             _routePointPair = routePointPair;
             _routePointPair.IsReserved = true;
             
@@ -80,13 +82,11 @@ namespace Gnomes
             gameObject.SetActive(false);
             
             Debug.Log("Counting time to screamer");
-            //todo disable flashlight
+            _flashlight.DisableFlashlight();
             await UniTask.Delay(TimeSpan.FromSeconds(timeBeforeScreamer), cancellationToken: token);
 
-            _screamerUIImage.gameObject.SetActive(true);
-            _screamerUIImage.sprite = screamerImageSprite;
+            _screamer.ShowScreamer(screamerImageSprite);
             Debug.Log("Boo game over");
-            Time.timeScale = 0f;
         }
       
         protected void ShooGnomeAway()
@@ -108,8 +108,7 @@ namespace Gnomes
             _routePointPair.IsReserved = false;
             Destroy(gameObject);
         }
-
-        protected async UniTask CountTimeToNextStateAsync(float changeStateTime, CancellationToken token)
+        private async UniTask CountTimeToNextStateAsync(float changeStateTime, CancellationToken token)
         {
             var startTime = Time.time;
             _timeRemaining = changeStateTime;
