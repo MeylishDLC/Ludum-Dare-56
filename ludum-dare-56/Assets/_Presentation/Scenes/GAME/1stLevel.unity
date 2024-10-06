@@ -3556,7 +3556,7 @@ MonoBehaviour:
   - {fileID: 5482374751206655265, guid: 5263b9b59f5967d458148e9cf6e51b54, type: 3}
   - {fileID: 684426545325050221, guid: 6ed3b8ed811eb634a9a80b7fa6fa6585, type: 3}
   - {fileID: 6534547043559985990, guid: a2899a0d3a12c1c458ce8ce8538fb227, type: 3}
-  maxTimeBetweenSpawn: 17
+  maxTimeBetweenSpawn: 30
   minTimeBetweenSpawn: 7
   tomatoes:
   - {fileID: 1413386564}

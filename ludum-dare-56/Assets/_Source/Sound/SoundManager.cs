@@ -11,16 +11,14 @@ namespace Sound
 {
     public class SoundManager : MonoBehaviour
     {
-        [Header("Volume")] [Range(0, 1)] public float masterVolume = 1;
+        [Header("Volume")] 
+        [Range(0, 1)] public float masterVolume = 1;
         [Range(0, 1)] public float musicVolume = 1;
-        [Range(0, 1)] public float ambienceVolume = 1;
         [Range(0, 1)] public float SFXVolume = 1;
-
         [field:SerializeField] public FMODEvents FMODEvents { get; private set; }
         
         private Bus masterBus;
         private Bus musicBus;
-        private Bus ambienceBus;
         private Bus sfxBus;
 
         private List<EventInstance> eventInstances = new();
@@ -30,13 +28,12 @@ namespace Sound
         [Inject]
         public void Initialize()
         {
-            //GetBuses();
+            GetBuses();
         }
         private void Update()
         {
             masterBus.setVolume(masterVolume);
             musicBus.setVolume(musicVolume);
-            ambienceBus.setVolume(ambienceVolume);
             sfxBus.setVolume(SFXVolume);
         }
         public void SetMusicArea(MusicAct act)
