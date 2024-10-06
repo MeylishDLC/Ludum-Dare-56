@@ -1588,6 +1588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf88175e5794ce9823c7012d4086bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsOn: 0
   lightObject: {fileID: 520185533}
 --- !u!1 &1088447346
 GameObject:
@@ -2542,9 +2543,7 @@ MonoBehaviour:
     <CloserPoint>k__BackingField: {fileID: 2135281459}
     <RoomType>k__BackingField: 2
   gnomePrefabs:
-  - {fileID: -1011114059910681011, guid: 66ec3faf737f44c42bf86fb5b607e010, type: 3}
-  - {fileID: 5482374751206655265, guid: 5263b9b59f5967d458148e9cf6e51b54, type: 3}
-  - {fileID: 942941393121012094, guid: 2af86c4ea6e5455418c7370599b94c66, type: 3}
+  - {fileID: 145106878672051910, guid: ead6e1439fb31684189ec55da3d857ee, type: 3}
   timeBetweenSpawn: 5
   tomatoes:
   - {fileID: 1413386564}
@@ -2552,6 +2551,7 @@ MonoBehaviour:
   soundButtons:
   - {fileID: 959142248}
   - {fileID: 1128424427}
+  flashlight: {fileID: 0}
 --- !u!1 &1553196293
 GameObject:
   m_ObjectHideFlags: 0

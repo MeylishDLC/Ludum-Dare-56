@@ -101,7 +101,8 @@ MonoBehaviour:
   furtherSprite: {fileID: 21300000, guid: 0b85e967c1cf00e479d60e0ac396d66f, type: 3}
   closerSprite: {fileID: 21300000, guid: a578c591d6fead840b3bafe30d080fbe, type: 3}
   screamerImageSprite: {fileID: 21300000, guid: 0b85e967c1cf00e479d60e0ac396d66f, type: 3}
-  changeToCloserStateTime: 5
-  changeToAttackStateTime: 5
-  disappearTime: 2
-  timeBeforeScreamer: 2
+  changeToCloserStateTime: 10
+  changeToAttackStateTime: 10
+  disappearTime: 1
+  timeBeforeScreamer: 3
+  timeToHoldFlashlight: 5

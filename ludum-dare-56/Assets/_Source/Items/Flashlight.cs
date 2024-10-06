@@ -4,8 +4,9 @@ namespace Items
 {
     public class Flashlight: MonoBehaviour
     {
-        [SerializeField] private GameObject lightObject;
+        public bool IsOn;
         
+        [SerializeField] private GameObject lightObject;
         private void Start()
         {
             lightObject.gameObject.SetActive(false);
@@ -32,10 +33,10 @@ namespace Items
                 TurnOnFlashlight(false);
             }
         }
-
         public void TurnOnFlashlight(bool on)
         {
             lightObject.SetActive(on);
+            IsOn = on;
         }
     }
 }

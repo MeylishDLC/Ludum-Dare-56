@@ -28,18 +28,26 @@ namespace Gnomes
         protected RoutePointPair _routePointPair;
         protected GnomeState _currentState;
 
-        protected float _timeRemaining;
-        protected CancellationTokenSource _cancelChangeStateCts = new();
-
-        protected Image _screamerUIImage;
-        protected Animator _screamerAnimator;
-        protected SpriteRenderer _spriteRenderer;
+        private Image _screamerUIImage;
+        private Animator _screamerAnimator;
+        private SpriteRenderer _spriteRenderer;
+        
+        private float _timeRemaining;
+        private CancellationTokenSource _cancelChangeStateCts = new();
         protected virtual void Start()
         {
             _screamerUIImage.gameObject.SetActive(false);
             _screamerAnimator = _screamerUIImage.GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _spriteRenderer.sprite = furtherSprite;
+        }
+        private void OnDestroy()
+        {
+            if (_cancelChangeStateCts != null)
+            {
+                _cancelChangeStateCts.Cancel();
+                _cancelChangeStateCts.Dispose();
+            }
         }
         protected void Initialize(RoutePointPair routePointPair, Image screamerUIImage)
         {
@@ -49,6 +57,7 @@ namespace Gnomes
             
             _currentState = GnomeState.Appeared;
             
+            CheckCts();
             CountTimeToNextStateAsync(changeToCloserStateTime, _cancelChangeStateCts.Token).Forget();
         }
         protected virtual void GetCloser()
@@ -61,6 +70,7 @@ namespace Gnomes
             gameObject.transform.position = _routePointPair.CloserPoint.position;
             _spriteRenderer.sprite = closerSprite;
             
+            CheckCts();
             CountTimeToNextStateAsync(changeToAttackStateTime, _cancelChangeStateCts.Token).Forget();
         }
         private async UniTask Attack(CancellationToken token)
@@ -81,6 +91,10 @@ namespace Gnomes
       
         protected void ShooGnomeAway()
         {
+            if (_currentState == GnomeState.Attack)
+            {
+                return;
+            }
             _cancelChangeStateCts?.Cancel();
             _cancelChangeStateCts?.Dispose();
             DisappearAsync(CancellationToken.None).Forget();
@@ -115,7 +129,6 @@ namespace Gnomes
                 GoToNextState();
             }
         }
-
         private void GoToNextState()
         {
             if (_currentState == GnomeState.Appeared)
@@ -128,6 +141,10 @@ namespace Gnomes
             {
                 Attack(CancellationToken.None).Forget();
             }
+        }
+        private void CheckCts()
+        {
+            _cancelChangeStateCts ??= new CancellationTokenSource();
         }
     }
 }
