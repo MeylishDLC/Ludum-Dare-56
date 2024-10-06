@@ -105,5 +105,6 @@ MonoBehaviour:
   changeToAttackStateTime: 7
   disappearTime: 2
   timeBeforeScreamer: 3
-  soundAmountToShoo: 1
+  minSoundAmountToShoo: 1
+  maxSoundAmountToShoo: 1
   timeBeforeLaugh: 1.5

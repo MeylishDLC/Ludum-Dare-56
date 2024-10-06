@@ -6,14 +6,20 @@ using Cysharp.Threading.Tasks;
 using Items;
 using Sound;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Gnomes
 {
     public class Radiozilla: Gnome
     {
-        [SerializeField] private int soundAmountToShoo;
-        [SerializeField] private int tomatoesAmountToShoo;
+        [SerializeField] private int minSoundAmountToShoo;
+        [SerializeField] private int maxSoundAmountToShoo;
+        [SerializeField] private int minTomatoesAmountToShoo;
+        [SerializeField] private int maxTomatoesAmountToShoo;
         [SerializeField] private float timeBeforeEating;
+
+        private int _soundAmountToShoo;
+        private int _tomatoesAmountToShoo;
         
         private int _currentSoundAmount;
         private int _currentTomatoAmount;
@@ -31,6 +37,9 @@ namespace Gnomes
         public void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, CameraMovement cameraMovement,
             SoundManager soundManager, Tomato tomato, SoundButton[] soundButtons)
         {
+            _soundAmountToShoo = Random.Range(minSoundAmountToShoo, maxSoundAmountToShoo + 1);
+            _tomatoesAmountToShoo = Random.Range(minTomatoesAmountToShoo, maxTomatoesAmountToShoo + 1);
+            
             PlayAppearSound(soundManager);
             _screamerSound = soundManager.FMODEvents.TomatozillaScreamer;
             _tomato = tomato;
@@ -73,10 +82,10 @@ namespace Gnomes
             PlayEatSound();
             _isWaiting = false;
             
-            if (_currentTomatoAmount < tomatoesAmountToShoo)
+            if (_currentTomatoAmount < _tomatoesAmountToShoo)
             {
                 _currentTomatoAmount++;
-                if (_currentTomatoAmount < tomatoesAmountToShoo)
+                if (_currentTomatoAmount < _tomatoesAmountToShoo)
                 {
                     return;
                 }
@@ -96,8 +105,8 @@ namespace Gnomes
         }
         private void TryShoo()
         {
-            if (_currentTomatoAmount >= tomatoesAmountToShoo
-                && _currentSoundAmount >= soundAmountToShoo)
+            if (_currentTomatoAmount >= _tomatoesAmountToShoo
+                && _currentSoundAmount >= _soundAmountToShoo)
             {
                 ShooGnomeAway();
                 _tomato.OnTomatoClicked -= OnTomatoClicked;
@@ -106,11 +115,11 @@ namespace Gnomes
         }
         private void OnSoundButtonPressed()
         {
-            if (_currentSoundAmount < soundAmountToShoo)
+            if (_currentSoundAmount < _soundAmountToShoo)
             {
                 _currentSoundAmount++;
 
-                if (_currentSoundAmount < soundAmountToShoo)
+                if (_currentSoundAmount < _soundAmountToShoo)
                 {
                     return;
                 }

@@ -7,14 +7,17 @@ using FMODUnity;
 using Items;
 using Sound;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Gnomes
 {
     public class Tomatozilla: Gnome
     {
-        [SerializeField] private int tomatoesAmountToShoo;
+        [SerializeField] private int minTomatoesAmountToShoo;
+        [SerializeField] private int maxTomatoesAmountToShoo;
         [SerializeField] private float timeBeforeEating;
-        
+
+        private int _tomatoesAmountToShoo;
         private Tomato _tomato;
         private int _currentTomatoAmount;
         private bool _isWaiting;
@@ -26,6 +29,8 @@ namespace Gnomes
             CameraMovement cameraMovement, SoundManager soundManager, Tomato tomato)
         {
             PlayAppearSound(soundManager);
+
+            _tomatoesAmountToShoo = Random.Range(minTomatoesAmountToShoo, maxTomatoesAmountToShoo + 1);
             
             _screamerSound = soundManager.FMODEvents.TomatozillaScreamer;
             _tomato = tomato;
@@ -76,10 +81,10 @@ namespace Gnomes
             PlayEatSound();
             _isWaiting = false;
             
-            if (_currentTomatoAmount < tomatoesAmountToShoo)
+            if (_currentTomatoAmount < _tomatoesAmountToShoo)
             {
                 _currentTomatoAmount++;
-                if (_currentTomatoAmount < tomatoesAmountToShoo)
+                if (_currentTomatoAmount < _tomatoesAmountToShoo)
                 {
                     return;
                 }

@@ -105,5 +105,8 @@ MonoBehaviour:
   changeToAttackStateTime: 7
   disappearTime: 2
   timeBeforeScreamer: 3
-  soundAmountToShoo: 1
-  tomatoesAmountToShoo: 1
+  minSoundAmountToShoo: 1
+  maxSoundAmountToShoo: 1
+  minTomatoesAmountToShoo: 1
+  maxTomatoesAmountToShoo: 1
+  timeBeforeEating: 0

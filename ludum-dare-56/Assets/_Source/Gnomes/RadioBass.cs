@@ -9,14 +9,17 @@ using Sound;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Gnomes
 {
     public class RadioBass: Gnome
     {
-        [SerializeField] private int soundAmountToShoo;
+        [SerializeField] private int minSoundAmountToShoo;
+        [SerializeField] private int maxSoundAmountToShoo;
         [SerializeField] private float timeBeforeLaugh;
 
+        private int _soundAmountToShoo;
         private SoundButton[] _soundButtons;
         private int _currentSoundAmount;
         private bool _isWaiting;
@@ -27,6 +30,8 @@ namespace Gnomes
         public void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, 
             CameraMovement cameraMovement, SoundManager soundManager, SoundButton[] soundButtons)
         {
+            _soundAmountToShoo = Random.Range(minSoundAmountToShoo, maxSoundAmountToShoo + 1);
+            
             _screamerSound = soundManager.FMODEvents.RadioBassScreamer;
             _soundButtons = soundButtons;
             SubscribeOnEvents(true);
@@ -58,11 +63,11 @@ namespace Gnomes
         }
         private async UniTask OnSoundButtonPressedAsync(CancellationToken token)
         {
-            if (_currentSoundAmount < soundAmountToShoo)
+            if (_currentSoundAmount < _soundAmountToShoo)
             {
                 _currentSoundAmount++;
 
-                if (_currentSoundAmount < soundAmountToShoo)
+                if (_currentSoundAmount < _soundAmountToShoo)
                 {
                     return;
                 }
