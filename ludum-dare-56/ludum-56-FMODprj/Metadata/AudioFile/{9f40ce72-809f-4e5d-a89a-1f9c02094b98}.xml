@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{9f40ce72-809f-4e5d-a89a-1f9c02094b98}">
+		<property name="assetPath">
+			<value>Characters/Radiozilla/LEFT_EAR_COUPLE (online-audio-converter.com).mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>4.0751020408163265</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{169027b8-fe9d-4e12-929e-a9df5ba7f897}</destination>
+		</relationship>
+	</object>
+</objects>

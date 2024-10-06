@@ -3,6 +3,7 @@ using System.Threading;
 using Camera;
 using Core;
 using Cysharp.Threading.Tasks;
+using FMODUnity;
 using Items;
 using Sound;
 using Unity.VisualScripting;
@@ -31,11 +32,12 @@ namespace Gnomes
         protected RoutePointPair _routePointPair;
         protected GnomeState _currentState;
         protected Flashlight _flashlight;
+        protected EventReference _screamerSound;
+        protected SoundManager _soundManager;
         
         private Screamer _screamer;
         private SpriteRenderer _spriteRenderer;
         private CameraMovement _cameraMovement;
-        private SoundManager _soundManager;
         
         private float _timeRemaining;
         private CancellationTokenSource _cancelChangeStateCts = new();
@@ -80,7 +82,7 @@ namespace Gnomes
             CheckCts();
             CountTimeToNextStateAsync(changeToAttackStateTime, _cancelChangeStateCts.Token).Forget();
         }
-        private async UniTask Attack(CancellationToken token)
+        protected virtual async UniTask Attack(CancellationToken token)
         {
             _currentState = GnomeState.Attack;
             OnGnomeChangeState?.Invoke();
@@ -91,7 +93,7 @@ namespace Gnomes
             await UniTask.Delay(TimeSpan.FromSeconds(timeBeforeScreamer), cancellationToken: token);
 
             _cameraMovement.EnableCameraMovement(false);
-            _screamer.ShowScreamer(screamerImageSprite);
+            _screamer.ShowScreamer(screamerImageSprite, _screamerSound);
             Debug.Log("Boo game over");
         }
       

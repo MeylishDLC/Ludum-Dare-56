@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{500467ab-bb8f-44c2-8a6b-f3e1fa1f4ae2}">
+		<property name="assetPath">
+			<value>Characters/Radiobass/RADIOBASS_LAUGH_IN_THE_HALL.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>6.3738775510204082</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{169027b8-fe9d-4e12-929e-a9df5ba7f897}</destination>
+		</relationship>
+	</object>
+</objects>

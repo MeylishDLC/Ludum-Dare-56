@@ -1,5 +1,7 @@
-﻿using Camera;
+﻿using System.Threading;
+using Camera;
 using Core;
+using Cysharp.Threading.Tasks;
 using Items;
 using Sound;
 using UnityEngine;
@@ -26,12 +28,26 @@ namespace Gnomes
         public void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, CameraMovement cameraMovement,
             SoundManager soundManager, Tomato tomato, SoundButton[] soundButtons)
         {
+            PlayAppearSound(soundManager);
+            _screamerSound = soundManager.FMODEvents.TomatozillaScreamer;
             _tomato = tomato;
             _soundButtons = soundButtons;
             SubscribeOnButtons(true);
             _tomato.OnTomatoClicked += OnTomatoClicked;
             
             base.Initialize(routePointPair, screamer, flashlight, cameraMovement, soundManager);
+        }
+
+        private void PlayAppearSound(SoundManager soundManager)
+        {
+            if (GnomeType == GnomeTypes.RadiozillaRight)
+            {
+                soundManager.PlayOneShot(soundManager.FMODEvents.PairAppearRight);
+            }
+            if (GnomeType == GnomeTypes.RadiozillaLeft)
+            {
+                soundManager.PlayOneShot(soundManager.FMODEvents.PairAppearLeft);
+            }
         }
         private void OnTomatoClicked()
         {

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{22e5dc41-5d9f-437d-b2ad-071d6f4bf048}">
+		<property name="assetPath">
+			<value>Characters/Radiobass/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{169027b8-fe9d-4e12-929e-a9df5ba7f897}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{0d3e5ee5-a450-461d-b54a-7591a55e84e7}">
+		<property name="assetPath">
+			<value>Characters/Radiozilla/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{169027b8-fe9d-4e12-929e-a9df5ba7f897}</destination>
+		</relationship>
+	</object>
+</objects>

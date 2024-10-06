@@ -60,7 +60,7 @@ namespace SceneManagement
         private void OnGameWin()
         {
             ClearScene();
-            _soundManager.SetMusicArea(MusicAct.GameLose);
+            _soundManager.SetMusicArea(MusicAct.Menu);
             
             _nightTimeTracker.OnNightEnded -= OnGameWin;
             _cameraMovement.EnableCameraMovement(false);
@@ -85,6 +85,7 @@ namespace SceneManagement
             restartButton.interactable = false;
             var scene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(scene);
+            _soundManager.SetMusicArea(MusicAct.Game);
             ResumeGame();
         }
         private void PauseGame()

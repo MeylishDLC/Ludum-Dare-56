@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using FMODUnity;
+using Sound;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Gnomes
 {
@@ -14,21 +17,31 @@ namespace Gnomes
         
         private Image _screamerUIImage;
         private Animator _screamerAnimator;
+        private SoundManager _soundManager;
+
+        [Inject]
+        public void Initialize(SoundManager soundManager)
+        {
+            _soundManager = soundManager;
+        }
         private void Start()
         {
             _screamerUIImage = GetComponent<Image>();
             _screamerAnimator = GetComponent<Animator>();
             _screamerUIImage.gameObject.SetActive(false);
         }
-        public void ShowScreamer(Sprite screamerSprite)
+        public void ShowScreamer(Sprite screamerSprite, EventReference sound)
         {
-            ShowScreamerAsync(screamerSprite, CancellationToken.None).Forget();
+            ShowScreamerAsync(screamerSprite, sound, CancellationToken.None).Forget();
         }
-        private async UniTask ShowScreamerAsync(Sprite screamerSprite, CancellationToken token)
+        private async UniTask ShowScreamerAsync(Sprite screamerSprite, EventReference sound, CancellationToken token)
         {
             _screamerUIImage.gameObject.SetActive(true);
             _screamerUIImage.sprite = screamerSprite;
+            _soundManager.PlayOneShot(sound);
             //todo play animation
+            //todo play sound
+            
             await UniTask.Delay(TimeSpan.FromSeconds(timeForScreamer), cancellationToken: token);
             OnPlayerDeath?.Invoke();
         }

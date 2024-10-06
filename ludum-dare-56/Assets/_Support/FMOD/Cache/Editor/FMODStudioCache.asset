@@ -1,5 +1,86 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8920911827742900670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Tomatozilla/Screamer
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Tomatozilla/Screamer
+  Guid:
+    Data1: -1295625415
+    Data2: 1151601078
+    Data3: 358093246
+    Data4: -1253277821
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-8534970506352449595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Items/LeftButton
+  m_EditorClassIdentifier: 
+  Path: event:/Items/LeftButton
+  Guid:
+    Data1: 1720975907
+    Data2: 1134053241
+    Data3: -780231262
+    Data4: -369776737
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-8257799251806347284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Tomatozilla/EatingLeft
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Tomatozilla/EatingLeft
+  Guid:
+    Data1: 1810010122
+    Data2: 1155178466
+    Data3: 722258566
+    Data4: 827281640
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-5476224794994538572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,7 +96,7 @@ MonoBehaviour:
   Path: ludum-56-FMODprj/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638638308630873692
+  lastModified: 638638376004334381
   FileSizes:
   - Name: Desktop
     Value: 12907072
@@ -35,11 +116,38 @@ MonoBehaviour:
   Path: ludum-56-FMODprj/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638638308629881062
+  lastModified: 638638488061014227
   FileSizes:
   - Name: Desktop
-    Value: 2752
+    Value: 2104800
   Exists: 1
+--- !u!114 &-5249157712980496968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Radiobass/Screamer
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Radiobass/Screamer
+  Guid:
+    Data1: 757286066
+    Data2: 1309389938
+    Data3: -1484256323
+    Data4: 1210031809
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-4191811853919852235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,6 +176,168 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-4085344445908295314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Radiobass/LaughHall
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Radiobass/LaughHall
+  Guid:
+    Data1: -1852325700
+    Data2: 1094330466
+    Data3: -961975638
+    Data4: -795588932
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3239046991608858853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/OpeningDoorLeft
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/OpeningDoorLeft
+  Guid:
+    Data1: 849851086
+    Data2: 1204880490
+    Data3: 2044646550
+    Data4: -329609480
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2860354093559856966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Footsteps
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Footsteps
+  Guid:
+    Data1: -268637476
+    Data2: 1115806948
+    Data3: -2137970789
+    Data4: 1307870227
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2630601463497485045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Radiozilla/AppearRight
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Radiozilla/AppearRight
+  Guid:
+    Data1: -290074835
+    Data2: 1137585076
+    Data3: -2087707998
+    Data4: 1557781469
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1331809593775275827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Tomatozilla/EatingRight
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Tomatozilla/EatingRight
+  Guid:
+    Data1: 24846021
+    Data2: 1078159266
+    Data3: 57444524
+    Data4: -1123658894
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-702246661722244286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/OpeningDoorRight
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/OpeningDoorRight
+  Guid:
+    Data1: 2139601205
+    Data2: 1320633744
+    Data3: -733647718
+    Data4: 633836306
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,15 +357,39 @@ MonoBehaviour:
   - {fileID: -5299179412971342796}
   EditorEvents:
   - {fileID: -4191811853919852235}
-  - {fileID: 4443945030397869109}
+  - {fileID: -8534970506352449595}
+  - {fileID: 3856895666913823664}
+  - {fileID: -702246661722244286}
+  - {fileID: -3239046991608858853}
+  - {fileID: -2860354093559856966}
+  - {fileID: 5448452833055024253}
+  - {fileID: 2575781414952191975}
+  - {fileID: 5619124516416020512}
+  - {fileID: -1331809593775275827}
+  - {fileID: -8920911827742900670}
+  - {fileID: 1846761899963156420}
+  - {fileID: 4062022838877122314}
+  - {fileID: -5249157712980496968}
+  - {fileID: -4085344445908295314}
+  - {fileID: -8257799251806347284}
+  - {fileID: 2967376555511829248}
+  - {fileID: 6380651782816824811}
+  - {fileID: 4499157054636339870}
+  - {fileID: 7865082002944434349}
+  - {fileID: 2574656149482605714}
+  - {fileID: 7769414945693306860}
+  - {fileID: 4733089355651960613}
+  - {fileID: -2630601463497485045}
+  - {fileID: 5223293690441409736}
+  - {fileID: 7549680323505947594}
   EditorParameters: []
   MasterBanks:
   - {fileID: 5857824480987002732}
   StringsBanks:
   - {fileID: 7382597093631512728}
-  cacheTime: 638638308630873692
+  cacheTime: 638638488061014227
   cacheVersion: 131616
---- !u!114 &4443945030397869109
+--- !u!114 &1846761899963156420
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,14 +399,257 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Flashlight
+  m_Name: event:/Characters/Radiobass/LaughRight
   m_EditorClassIdentifier: 
-  Path: event:/SFX/Flashlight
+  Path: event:/Characters/Radiobass/LaughRight
   Guid:
-    Data1: -1466972376
-    Data2: 1196910722
-    Data3: 299118726
-    Data4: 1241783578
+    Data1: 1144656096
+    Data2: 1118853013
+    Data3: -2056315999
+    Data4: -1007037771
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2574656149482605714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Spoonkin/Shocked
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Spoonkin/Shocked
+  Guid:
+    Data1: -421033742
+    Data2: 1178839287
+    Data3: -1412924492
+    Data4: -249800268
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2575781414952191975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/KnockingRight
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/KnockingRight
+  Guid:
+    Data1: 1647762937
+    Data2: 1151279549
+    Data3: 1321794224
+    Data4: 262512859
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2967376555511829248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Radiobass/CloseGlitch
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Radiobass/CloseGlitch
+  Guid:
+    Data1: 1544336327
+    Data2: 1220612836
+    Data3: 758766491
+    Data4: -1655390726
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3856895666913823664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Items/RightButton
+  m_EditorClassIdentifier: 
+  Path: event:/Items/RightButton
+  Guid:
+    Data1: -332951537
+    Data2: 1239176622
+    Data3: 711305635
+    Data4: -34654052
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4062022838877122314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Tomatozilla/AppearLeft
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Tomatozilla/AppearLeft
+  Guid:
+    Data1: -1767978435
+    Data2: 1163143017
+    Data3: -331708006
+    Data4: 297349240
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4499157054636339870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Radiobass/LaughLeft
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Radiobass/LaughLeft
+  Guid:
+    Data1: -2019053765
+    Data2: 1133313424
+    Data3: 57673386
+    Data4: -1475178486
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4733089355651960613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Radiozilla/AppearLeft
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Radiozilla/AppearLeft
+  Guid:
+    Data1: -1254419531
+    Data2: 1240439907
+    Data3: -1642780241
+    Data4: -69742304
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5223293690441409736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Items/TomatoLeft
+  m_EditorClassIdentifier: 
+  Path: event:/Items/TomatoLeft
+  Guid:
+    Data1: -1434134222
+    Data2: 1118304907
+    Data3: -2091819623
+    Data4: 1725003185
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5448452833055024253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/KnockingLeft
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/KnockingLeft
+  Guid:
+    Data1: -1888004881
+    Data2: 1122899645
+    Data3: -1364297337
+    Data4: 1638922883
   Banks:
   - {fileID: -5299179412971342796}
   IsStream: 0
@@ -150,6 +687,33 @@ MonoBehaviour:
   - GameLose
   - Ending
   Exists: 1
+--- !u!114 &5619124516416020512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Tomatozilla/AppearRight
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Tomatozilla/AppearRight
+  Guid:
+    Data1: -210709502
+    Data2: 1318917333
+    Data3: 1758507685
+    Data4: 321178879
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &5857824480987002732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,11 +729,38 @@ MonoBehaviour:
   Path: ludum-56-FMODprj/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638638308628840692
+  lastModified: 638638488060467639
   FileSizes:
   - Name: Desktop
     Value: 1036
   Exists: 1
+--- !u!114 &6380651782816824811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Radiobass/FarGlitch
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Radiobass/FarGlitch
+  Guid:
+    Data1: -688262969
+    Data2: 1170486124
+    Data3: 118013100
+    Data4: -513698281
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &7382597093631512728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,8 +776,89 @@ MonoBehaviour:
   Path: ludum-56-FMODprj/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638638308628850696
+  lastModified: 638638488060477634
   FileSizes:
   - Name: Desktop
-    Value: 964
+    Value: 2124
   Exists: 1
+--- !u!114 &7549680323505947594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Items/TomatoRight
+  m_EditorClassIdentifier: 
+  Path: event:/Items/TomatoRight
+  Guid:
+    Data1: 861371500
+    Data2: 1283873747
+    Data3: 1560792196
+    Data4: -1945430793
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7769414945693306860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Items/Flashlight
+  m_EditorClassIdentifier: 
+  Path: event:/Items/Flashlight
+  Guid:
+    Data1: -1466972376
+    Data2: 1196910722
+    Data3: 299118726
+    Data4: 1241783578
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7865082002944434349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Characters/Spoonkin/Screamer
+  m_EditorClassIdentifier: 
+  Path: event:/Characters/Spoonkin/Screamer
+  Guid:
+    Data1: 1198169521
+    Data2: 1245285405
+    Data3: -917390183
+    Data4: -696557855
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0

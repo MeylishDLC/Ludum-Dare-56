@@ -18,6 +18,7 @@ namespace Gnomes
         public override void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, 
             CameraMovement cameraMovement, SoundManager soundManager)
         {
+            _screamerSound = soundManager.FMODEvents.SpoonkinScreamer;
             _flashlight = flashlight;
             TrackFlashlightHoldTime(CancellationToken.None).Forget();
             base.Initialize(routePointPair, screamer, flashlight, cameraMovement, soundManager);

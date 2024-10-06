@@ -1127,6 +1127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 0.5
+  side: 1
 --- !u!212 &564296242
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1899,6 +1900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 2
+  side: 1
 --- !u!58 &959142249
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2371,6 +2373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 2
+  side: 0
 --- !u!58 &1128424428
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2570,7 +2573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e987d3f536604fab99591206ba5a39fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeForScreamer: 2
+  timeForScreamer: 5
 --- !u!1 &1244761116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2841,7 +2844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436e1b53010e475a87c98873651e3817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nightDuration: 240
+  nightDuration: 180
   timeIcon: {fileID: 1312380184}
 --- !u!1 &1376592512
 GameObject:
@@ -3148,6 +3151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 0.5
+  side: 0
 --- !u!58 &1413386565
 CircleCollider2D:
   m_ObjectHideFlags: 0

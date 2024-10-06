@@ -19,10 +19,164 @@ MonoBehaviour:
       Data3: 1830549635
       Data4: 1475066470
     Path: event:/Music/GameMusicActs
+  <Footsteps>k__BackingField:
+    Guid:
+      Data1: -268637476
+      Data2: 1115806948
+      Data3: -2137970789
+      Data4: 1307870227
+    Path: event:/SFX/Footsteps
+  <KnockingLeft>k__BackingField:
+    Guid:
+      Data1: -1888004881
+      Data2: 1122899645
+      Data3: -1364297337
+      Data4: 1638922883
+    Path: event:/SFX/KnockingLeft
+  <KnockingRight>k__BackingField:
+    Guid:
+      Data1: 1647762937
+      Data2: 1151279549
+      Data3: 1321794224
+      Data4: 262512859
+    Path: event:/SFX/KnockingRight
+  <OpeningDoorLeft>k__BackingField:
+    Guid:
+      Data1: 849851086
+      Data2: 1204880490
+      Data3: 2044646550
+      Data4: -329609480
+    Path: event:/SFX/OpeningDoorLeft
+  <OpeningDoorRight>k__BackingField:
+    Guid:
+      Data1: 2139601205
+      Data2: 1320633744
+      Data3: -733647718
+      Data4: 633836306
+    Path: event:/SFX/OpeningDoorRight
   <FlashlightSound>k__BackingField:
     Guid:
       Data1: -1466972376
       Data2: 1196910722
       Data3: 299118726
       Data4: 1241783578
-    Path: event:/SFX/Flashlight
+    Path: event:/Items/Flashlight
+  <RightButton>k__BackingField:
+    Guid:
+      Data1: -332951537
+      Data2: 1239176622
+      Data3: 711305635
+      Data4: -34654052
+    Path: event:/Items/RightButton
+  <LeftButton>k__BackingField:
+    Guid:
+      Data1: 1720975907
+      Data2: 1134053241
+      Data3: -780231262
+      Data4: -369776737
+    Path: event:/Items/LeftButton
+  <LeftTomato>k__BackingField:
+    Guid:
+      Data1: 861371500
+      Data2: 1283873747
+      Data3: 1560792196
+      Data4: -1945430793
+    Path: event:/Items/TomatoRight
+  <RightTomato>k__BackingField:
+    Guid:
+      Data1: -1434134222
+      Data2: 1118304907
+      Data3: -2091819623
+      Data4: 1725003185
+    Path: event:/Items/TomatoLeft
+  <RadioBassScreamer>k__BackingField:
+    Guid:
+      Data1: 757286066
+      Data2: 1309389938
+      Data3: -1484256323
+      Data4: 1210031809
+    Path: event:/Characters/Radiobass/Screamer
+  <LaughHall>k__BackingField:
+    Guid:
+      Data1: -1852325700
+      Data2: 1094330466
+      Data3: -961975638
+      Data4: -795588932
+    Path: event:/Characters/Radiobass/LaughHall
+  <LaughLeft>k__BackingField:
+    Guid:
+      Data1: -2019053765
+      Data2: 1133313424
+      Data3: 57673386
+      Data4: -1475178486
+    Path: event:/Characters/Radiobass/LaughLeft
+  <LaughRight>k__BackingField:
+    Guid:
+      Data1: 1144656096
+      Data2: 1118853013
+      Data3: -2056315999
+      Data4: -1007037771
+    Path: event:/Characters/Radiobass/LaughRight
+  <TomatozillaScreamer>k__BackingField:
+    Guid:
+      Data1: -1295625415
+      Data2: 1151601078
+      Data3: 358093246
+      Data4: -1253277821
+    Path: event:/Characters/Tomatozilla/Screamer
+  <AppearRight>k__BackingField:
+    Guid:
+      Data1: -210709502
+      Data2: 1318917333
+      Data3: 1758507685
+      Data4: 321178879
+    Path: event:/Characters/Tomatozilla/AppearRight
+  <AppearLeft>k__BackingField:
+    Guid:
+      Data1: -1767978435
+      Data2: 1163143017
+      Data3: -331708006
+      Data4: 297349240
+    Path: event:/Characters/Tomatozilla/AppearLeft
+  <EatingRight>k__BackingField:
+    Guid:
+      Data1: 24846021
+      Data2: 1078159266
+      Data3: 57444524
+      Data4: -1123658894
+    Path: event:/Characters/Tomatozilla/EatingRight
+  <EatingLeft>k__BackingField:
+    Guid:
+      Data1: 1810010122
+      Data2: 1155178466
+      Data3: 722258566
+      Data4: 827281640
+    Path: event:/Characters/Tomatozilla/EatingLeft
+  <SpoonkinScreamer>k__BackingField:
+    Guid:
+      Data1: 1198169521
+      Data2: 1245285405
+      Data3: -917390183
+      Data4: -696557855
+    Path: event:/Characters/Spoonkin/Screamer
+  <Shocked>k__BackingField:
+    Guid:
+      Data1: -421033742
+      Data2: 1178839287
+      Data3: -1412924492
+      Data4: -249800268
+    Path: event:/Characters/Spoonkin/Shocked
+  <PairAppearLeft>k__BackingField:
+    Guid:
+      Data1: -1254419531
+      Data2: 1240439907
+      Data3: -1642780241
+      Data4: -69742304
+    Path: event:/Characters/Radiozilla/AppearLeft
+  <PairAppearRight>k__BackingField:
+    Guid:
+      Data1: -290074835
+      Data2: 1137585076
+      Data3: -2087707998
+      Data4: 1557781469
+    Path: event:/Characters/Radiozilla/AppearRight

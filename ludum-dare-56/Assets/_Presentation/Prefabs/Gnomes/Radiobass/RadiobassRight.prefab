@@ -100,9 +100,10 @@ MonoBehaviour:
   <GnomeType>k__BackingField: 4
   furtherSprite: {fileID: 21300000, guid: 25e457a61caa6a54ea4480212b1c275d, type: 3}
   closerSprite: {fileID: 21300000, guid: 7c8a8db093f646640b15ed735f9b1220, type: 3}
-  screamerImageSprite: {fileID: 21300000, guid: e927f79922ce72d4daad4e38fa1cb0f3, type: 3}
+  screamerImageSprite: {fileID: 21300000, guid: 9b4180b729ef8e745a5a6ac8642e03db, type: 3}
   changeToCloserStateTime: 7
   changeToAttackStateTime: 7
-  disappearTime: 1
+  disappearTime: 2
   timeBeforeScreamer: 3
   soundAmountToShoo: 1
+  timeBeforeLaugh: 1.5

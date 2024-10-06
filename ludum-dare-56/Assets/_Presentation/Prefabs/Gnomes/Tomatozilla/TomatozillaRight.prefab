@@ -100,7 +100,7 @@ MonoBehaviour:
   <GnomeType>k__BackingField: 1
   furtherSprite: {fileID: 21300000, guid: dab1d233986ee3b478f6779d6526f458, type: 3}
   closerSprite: {fileID: 21300000, guid: 15928860f6b585f4cb83780d6bdf560f, type: 3}
-  screamerImageSprite: {fileID: 21300000, guid: 314511053284ca34bb33274f8ce9cf67, type: 3}
+  screamerImageSprite: {fileID: 21300000, guid: 3addd33973ad1094fa474fab0111eaef, type: 3}
   changeToCloserStateTime: 5
   changeToAttackStateTime: 5
   disappearTime: 2

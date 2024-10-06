@@ -1,19 +1,35 @@
 ﻿using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Sound;
 using UnityEngine;
+using Zenject;
 
 namespace Items
 {
     public class Tomato: MonoBehaviour
     {
+        private enum Sides
+        {
+            Left,
+            Right
+        }
+        
         public event Action OnTomatoClicked;
 
         [SerializeField] private float cooldown;
+        [SerializeField] private Sides side;
 
         private bool _isOnCooldown;
         private Animator _animator;
+        private SoundManager _soundManager;
         private static readonly int property = Animator.StringToHash("throw");
+
+        [Inject]
+        public void Initialize(SoundManager soundManager)
+        {
+            _soundManager = soundManager;
+        }
         private void Start()
         {
             _animator = GetComponent<Animator>();
@@ -31,11 +47,19 @@ namespace Items
                     {
                         Debug.Log("Tomato thrown");
                         _animator.SetTrigger(property);
+                        PlaySound();
+                        
                         OnTomatoClicked?.Invoke();
                         StartCooldownAsync(CancellationToken.None).Forget();
                     }
                 }
             }
+        }
+        private void PlaySound()
+        {
+            _soundManager.PlayOneShot(side == Sides.Left
+                ? _soundManager.FMODEvents.LeftTomato
+                : _soundManager.FMODEvents.RightTomato);
         }
         private async UniTask StartCooldownAsync(CancellationToken token)
         {
