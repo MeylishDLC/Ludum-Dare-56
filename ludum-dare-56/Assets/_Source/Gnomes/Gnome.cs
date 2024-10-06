@@ -41,7 +41,7 @@ namespace Gnomes
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _spriteRenderer.sprite = furtherSprite;
         }
-        public void Initialize(RoutePointPair routePointPair, Image screamerUIImage)
+        protected void Initialize(RoutePointPair routePointPair, Image screamerUIImage)
         {
             _screamerUIImage = screamerUIImage;
             _routePointPair = routePointPair;

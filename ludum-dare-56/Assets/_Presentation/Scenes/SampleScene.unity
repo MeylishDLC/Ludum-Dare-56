@@ -2544,6 +2544,7 @@ MonoBehaviour:
   gnomePrefabs:
   - {fileID: -1011114059910681011, guid: 66ec3faf737f44c42bf86fb5b607e010, type: 3}
   - {fileID: 5482374751206655265, guid: 5263b9b59f5967d458148e9cf6e51b54, type: 3}
+  - {fileID: 942941393121012094, guid: 2af86c4ea6e5455418c7370599b94c66, type: 3}
   timeBetweenSpawn: 5
   tomatoes:
   - {fileID: 1413386564}

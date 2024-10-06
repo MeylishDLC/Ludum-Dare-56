@@ -12,24 +12,22 @@ using Random = UnityEngine.Random;
 
 namespace Core
 {
-    public class GnomeSpawner: MonoBehaviour
+    public class GnomeSpawner : MonoBehaviour
     {
-        [Header("MAIN")]
-        [SerializeField] private Image screamerImage;
+        [Header("MAIN")] [SerializeField] private Image screamerImage;
         [SerializeField] private RoutePointPair[] routes;
         [SerializeField] private Gnome[] gnomePrefabs;
 
-        [Header("Timers")] 
-        [SerializeField] private float timeBetweenSpawn;
+        [Header("Timers")] [SerializeField] private float timeBetweenSpawn;
 
         [Header("Unit Stuff")] 
         [SerializeField] private Tomato[] tomatoes;
         [SerializeField] private SoundButton[] soundButtons;
+        [SerializeField] private Flashlight flashlight;
         private void Start()
         {
             StartSpawningSequence(CancellationToken.None).Forget();
         }
-
         private async UniTask StartSpawningSequence(CancellationToken token)
         {
             while (!token.IsCancellationRequested)
@@ -41,155 +39,85 @@ namespace Core
         private void CheckSpawnGnome()
         {
             var freeRoute = GetFreeRoute();
-            if (freeRoute == null)
-            {
-                return;
-            }
-            
+            if (freeRoute == null) return;
+
             var roomType = freeRoute.RoomType;
             SpawnInRoom(roomType, freeRoute);
         }
         private void SpawnInRoom(RoomTypes roomType, RoutePointPair freeRoute)
         {
-            if (roomType == RoomTypes.HospitalRoomLeft)
+            if (TryFindGnomeByType(GetGnomeTypesForRoom(roomType), out var gnome))
             {
-                if (TryFindGnomeByType(new [] 
-                        {GnomeTypes.RadioBassLeft, GnomeTypes.TomatozillaLeft, GnomeTypes.TomatozillaRadioBassPairLeft}, out var gnome))
+                if (gnome is Tomatozilla tomatozilla)
                 {
-                    if (gnome.GetType() == typeof(Tomatozilla))
-                    {
-                        SpawnTomatozilla(gnome, freeRoute);
-                    }
-                    if (gnome.GetType() == typeof(RadioBass))
-                    {
-                        SpawnRadioBass(gnome, freeRoute);
-                    }
-                    else
-                    {
-                        SpawnSpoonkin(gnome, freeRoute);
-                    }
+                    SpawnTomatozilla(tomatozilla, freeRoute);
                 }
-            }
-            if (roomType == RoomTypes.HospitalRoomRight)
-            {
-                if (TryFindGnomeByType(new [] 
-                        {GnomeTypes.RadioBassRight, GnomeTypes.TomatozillaRight, GnomeTypes.TomatozillaRadioBassPairRight}, out var gnome))
+                if (gnome is RadioBass radioBass)
                 {
-                    if (gnome.GetType() == typeof(Tomatozilla))
-                    {
-                        SpawnTomatozilla(gnome, freeRoute);
-                    }
-                    if (gnome.GetType() == typeof(RadioBass))
-                    {
-                        SpawnRadioBass(gnome, freeRoute);
-                    }
-                    else
-                    {
-                        SpawnSpoonkin(gnome, freeRoute);
-                    }
+                    SpawnRadioBass(radioBass, freeRoute);
                 }
-            }
-            
-            if (roomType == RoomTypes.CorridorCeiling)
-            {
-                if (TryFindGnomeByType(GnomeTypes.RadioBass, out var gnome))
+                if (gnome is Spoonkin spoonkin)
                 {
-                    SpawnRadioBass(gnome, freeRoute);
-                }
-            }
-            if (roomType == RoomTypes.CorridorFloor)
-            {
-                if (TryFindGnomeByType(GnomeTypes.Spoonkin, out var gnome))
-                {
-                    SpawnSpoonkin(gnome, freeRoute);
+                    SpawnSpoonkin(spoonkin, freeRoute);
                 }
             }
         }
-        private void SpawnSpoonkin(Gnome gnome, RoutePointPair freeRoute)
+
+        private void SpawnSpoonkin(Spoonkin gnome, RoutePointPair freeRoute)
         {
             var spawnedGnome = Instantiate(gnome, freeRoute.FurtherPoint.position, Quaternion.identity);
-            spawnedGnome.Initialize(freeRoute, screamerImage);
+            spawnedGnome.Initialize(freeRoute, screamerImage, flashlight);
             freeRoute.IsReserved = true;
         }
-        private void SpawnTomatozilla(Gnome gnome, RoutePointPair freeRoute)
+
+        private void SpawnTomatozilla(Tomatozilla tomatozilla, RoutePointPair freeRoute)
         {
-            var tomatozilla = (Tomatozilla) gnome; 
             var spawnedGnome = Instantiate(tomatozilla, freeRoute.FurtherPoint.position, Quaternion.identity);
             spawnedGnome.Initialize(freeRoute, screamerImage, tomatoes);
             freeRoute.IsReserved = true;
         }
-        private void SpawnRadioBass(Gnome gnome, RoutePointPair freeRoute)
+
+        private void SpawnRadioBass(RadioBass radioBass, RoutePointPair freeRoute)
         {
-            var radioBass = (RadioBass)gnome;
             var spawnedGnome = Instantiate(radioBass, freeRoute.FurtherPoint.position, Quaternion.identity);
             spawnedGnome.Initialize(freeRoute, screamerImage, soundButtons);
             freeRoute.IsReserved = true;
         }
-        
         private bool TryFindGnomeByType(GnomeTypes[] types, out Gnome appealingGnome)
         {
             appealingGnome = null;
-            var gnomes = new List<Gnome>();
-            foreach (var gnome in gnomePrefabs)
-            {
-                foreach (var type in types)
-                {
-                    if (gnome.GnomeType == type && !gnomes.Contains(gnome))
-                    {
-                        gnomes.Add(gnome);
-                    }
-                }
-            }
+            var gnomes = gnomePrefabs.Where(gnome => types.Contains(gnome.GnomeType)).ToList();
 
             if (!gnomes.Any())
             {
                 return false;
             }
 
-            var randomGnome = gnomes[Random.Range(0, gnomes.Count - 1)];
-            appealingGnome = randomGnome;
+            appealingGnome = gnomes[Random.Range(0, gnomes.Count)];
             return true;
         }
-        private bool TryFindGnomeByType(GnomeTypes type, out Gnome appealingGnome)
+        private GnomeTypes[] GetGnomeTypesForRoom(RoomTypes roomType)
         {
-            appealingGnome = null;
-            var gnomes = new List<Gnome>();
-            foreach (var gnome in gnomePrefabs)
+            return roomType switch
             {
-                if (gnome.GnomeType == type && !gnomes.Contains(gnome))
-                {
-                    gnomes.Add(gnome);
-                }
-            }
-
-            if (!gnomes.Any())
-            {
-                return false;
-            }
-
-            var randomGnome = gnomes[Random.Range(0, gnomes.Count - 1)];
-            appealingGnome = randomGnome;
-            return true;
+                RoomTypes.HospitalRoomLeft => new[]
+                    {GnomeTypes.RadioBassLeft, GnomeTypes.TomatozillaLeft, GnomeTypes.TomatozillaRadioBassPairLeft},
+                
+                RoomTypes.HospitalRoomRight => new[]
+                    {GnomeTypes.RadioBassRight, GnomeTypes.TomatozillaRight, GnomeTypes.TomatozillaRadioBassPairRight},
+                
+                RoomTypes.CorridorCeiling => new[] {GnomeTypes.RadioBass},
+                
+                RoomTypes.CorridorFloor => new[] {GnomeTypes.Spoonkin},
+                
+                _ => Array.Empty<GnomeTypes>()
+            };
         }
 
         private RoutePointPair GetFreeRoute()
         {
-            var freeRoutes = new List<RoutePointPair>();
-            foreach (var route in routes)
-            {
-                if (!route.IsReserved)
-                {
-                    freeRoutes.Add(route);
-                }
-            }
-
-            if (!freeRoutes.Any())
-            {
-                return null;
-            }
-            
-            var randomRoute = freeRoutes[Random.Range(0, routes.Length - 1)];
-            return randomRoute;
+            var freeRoutes = routes.Where(route => !route.IsReserved).ToList();
+            return freeRoutes.Any() ? freeRoutes[Random.Range(0, freeRoutes.Count)] : null;
         }
     }
 }
