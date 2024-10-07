@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using Sound;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace Items
 {
     public class Flashlight: MonoBehaviour
     {
+        public event Action<bool> OnFlashlightSwitch;
         public bool IsOn { get; private set; }
 
         [SerializeField] private Image[] chargeBars;
@@ -51,6 +53,7 @@ namespace Items
                 if (hit.collider != null && hit.collider.gameObject == gameObject)
                 {
                     _soundManager.PlayOneShot(_soundManager.FMODEvents.FlashlightSound);
+                    OnFlashlightSwitch?.Invoke(true);
                 }
             }
             
@@ -71,6 +74,17 @@ namespace Items
             else
             {
                 TurnOnFlashlight(false);
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                var mousePos = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                var hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+                if (hit.collider != null && hit.collider.gameObject == gameObject)
+                {
+                    OnFlashlightSwitch?.Invoke(false);
+                }
             }
         }
         public void DisableFlashlight(bool disable)

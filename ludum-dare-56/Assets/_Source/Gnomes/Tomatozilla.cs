@@ -13,6 +13,9 @@ namespace Gnomes
 {
     public class Tomatozilla: Gnome
     {
+        public static event Action<Gnome> OnSpawnInDoors;
+        public static event Action<Gnome> OnDespawnInDoors;
+        
         [SerializeField] private int minTomatoesAmountToShoo;
         [SerializeField] private int maxTomatoesAmountToShoo;
         [SerializeField] private float timeBeforeEating;
@@ -21,13 +24,17 @@ namespace Gnomes
         private Tomato _tomato;
         private int _currentTomatoAmount;
         private bool _isWaiting;
-        private void OnDestroy()
+
+        protected override void OnDestroy()
         {
             _tomato.OnTomatoClicked -= OnTomatoClicked;
+            OnDespawnInDoors?.Invoke(this);
+            base.OnDestroy();
         }
         public void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, 
             CameraMovement cameraMovement, SoundManager soundManager, Tomato tomato)
         {
+            OnSpawnInDoors?.Invoke(this);
             PlayAppearSound(soundManager);
 
             _tomatoesAmountToShoo = Random.Range(minTomatoesAmountToShoo, maxTomatoesAmountToShoo + 1);
@@ -61,6 +68,13 @@ namespace Gnomes
                 _soundManager.PlayOneShot(_soundManager.FMODEvents.EatingRight);
             }
         }
+
+        protected override UniTask Attack(CancellationToken token)
+        {
+            OnDespawnInDoors?.Invoke(this);
+            return base.Attack(token);
+        }
+
         private void OnTomatoClicked()
         {
             OnTomatoClickedAsync(CancellationToken.None).Forget();

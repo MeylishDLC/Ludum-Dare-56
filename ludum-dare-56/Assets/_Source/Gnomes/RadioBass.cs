@@ -15,23 +15,50 @@ namespace Gnomes
 {
     public class RadioBass: Gnome
     {
+        public static event Action<Gnome> OnSpawnInDoors;
+        public static event Action<Gnome> OnDespawnInDoors;
+        
         [SerializeField] private int minSoundAmountToShoo;
         [SerializeField] private int maxSoundAmountToShoo;
         [SerializeField] private float timeBeforeLaugh;
 
+        [Header("Shadows")] 
+        [SerializeField] private GameObject _forwardShadow;
+        [SerializeField] private GameObject _backShadow;
+        
         private int _soundAmountToShoo;
         private SoundButton[] _soundButtons;
         private int _currentSoundAmount;
         private bool _isWaiting;
-        private void OnDestroy()
+
+        private GnomeShadow _gnomeShadow;
+        protected override void OnDestroy()
         {
+            if (GnomeType != GnomeTypes.RadioBass)
+            {
+                OnDespawnInDoors?.Invoke(this);
+            }
+            if (_gnomeShadow != null)
+            {
+                _gnomeShadow.Unsubscribe();
+            }
+            base.OnDestroy();
             SubscribeOnEvents(false);
         }
         public void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, 
             CameraMovement cameraMovement, SoundManager soundManager, SoundButton[] soundButtons)
         {
             _soundAmountToShoo = Random.Range(minSoundAmountToShoo, maxSoundAmountToShoo + 1);
-            
+
+            if (GnomeType == GnomeTypes.RadioBass)
+            {
+                _forwardShadow.SetActive(false);
+                _backShadow.SetActive(false);
+            }
+            else
+            {
+                OnSpawnInDoors?.Invoke(this);
+            }
             _screamerSound = soundManager.FMODEvents.RadioBassScreamer;
             _soundButtons = soundButtons;
             SubscribeOnEvents(true);
@@ -39,7 +66,7 @@ namespace Gnomes
             gameObject.transform.rotation = routePointPair.FurtherPoint.rotation;
             base.Initialize(routePointPair, screamer, flashlight, cameraMovement, soundManager);
         }
-
+        
         protected override async UniTask Appear(CancellationToken token)
         {
             _currentState = GnomeState.Appeared;
@@ -50,12 +77,38 @@ namespace Gnomes
             _soundManager.PlayMusicDuringTime(changeToCloserStateTime, _soundManager.FMODEvents.FarGlitch);
             CountTimeToNextStateAsync(changeToCloserStateTime, _cancelChangeStateCts.Token).Forget();
         }
-
         protected override void GetCloser()
         {
             gameObject.transform.rotation = _routePointPair.CloserPoint.rotation;
             _soundManager.PlayMusicDuringTime(changeToAttackStateTime, _soundManager.FMODEvents.CloseGlitch);
+            
+            if (GnomeType == GnomeTypes.RadioBass)
+            {
+                if (!_flashlight.IsOn)
+                {
+                    _forwardShadow.SetActive(true);
+                }
+                else
+                {
+                    _backShadow.SetActive(true);
+                }
+                _gnomeShadow = new GnomeShadow(_forwardShadow, _backShadow, _flashlight);
+            }
             base.GetCloser();
+        }
+        protected override UniTask Attack(CancellationToken token)
+        {
+            if (GnomeType != GnomeTypes.RadioBass)
+            {
+                OnDespawnInDoors?.Invoke(this);
+            }
+            if (_gnomeShadow != null)
+            {
+                _gnomeShadow.Unsubscribe();
+                _backShadow.SetActive(false);
+                _forwardShadow.SetActive(false);
+            }
+            return base.Attack(token);
         }
         private void OnSoundButtonPressed()
         {
@@ -84,7 +137,14 @@ namespace Gnomes
             ShooGnomeAway();
             SubscribeOnEvents(false);
         }
-
+        protected override void ShooGnomeAway()
+        {
+            if (_gnomeShadow != null)
+            {
+                _gnomeShadow.Unsubscribe();
+            }
+            base.ShooGnomeAway();
+        }
         private void PlayLaugh()
         {
             if (GnomeType == GnomeTypes.RadioBass)

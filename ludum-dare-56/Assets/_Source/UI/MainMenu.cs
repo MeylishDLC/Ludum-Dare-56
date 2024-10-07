@@ -88,7 +88,7 @@ namespace UI
         {
             await newspaper.DOColor(Color.black, newspaperFadeTime).ToUniTask(cancellationToken: token);
             startGameButton.interactable = false;
-            SceneManager.LoadScene("1stLevel");
+            SceneManager.LoadScene(1);
         }
         private void OpenSettings()
         {

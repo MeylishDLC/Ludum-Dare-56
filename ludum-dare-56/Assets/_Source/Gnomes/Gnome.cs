@@ -31,6 +31,7 @@ namespace Gnomes
         [SerializeField] protected float timeBeforeScreamer;
         
         protected CancellationTokenSource _cancelChangeStateCts = new();
+        protected CancellationTokenSource _cancelAttackCts = new();
         protected RoutePointPair _routePointPair;
         protected GnomeState _currentState;
         protected Flashlight _flashlight;
@@ -42,12 +43,14 @@ namespace Gnomes
         private CameraMovement _cameraMovement;
         
         private float _timeRemaining;
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             if (_cancelChangeStateCts != null)
             {
                 _cancelChangeStateCts.Cancel();
                 _cancelChangeStateCts.Dispose();
+                _cancelAttackCts.Cancel();
+                _cancelAttackCts.Dispose();
             }
         }
         public virtual void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, 
@@ -102,7 +105,7 @@ namespace Gnomes
             Debug.Log("Boo game over");
         }
       
-        protected void ShooGnomeAway()
+        protected virtual void ShooGnomeAway()
         {
             if (_currentState == GnomeState.Attack)
             {
@@ -120,7 +123,6 @@ namespace Gnomes
             _routePointPair.IsReserved = false;
             Destroy(gameObject);
         }
-
         protected async UniTask CountTimeToNextStateAsync(float changeStateTime, CancellationToken token)
         {
             var startTime = Time.time;
@@ -151,7 +153,7 @@ namespace Gnomes
 
             if (_currentState == GnomeState.Closer)
             {
-                Attack(CancellationToken.None).Forget();
+                Attack(_cancelChangeStateCts.Token).Forget();
             }
         }
 

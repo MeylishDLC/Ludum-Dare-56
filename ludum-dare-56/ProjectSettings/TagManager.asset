@@ -44,11 +44,11 @@ TagManager:
   - name: Enviroment
     uniqueID: 3972350553
     locked: 0
-  - name: New Layer 8
-    uniqueID: 1044332665
-    locked: 0
   - name: Doors
     uniqueID: 363635543
+    locked: 0
+  - name: Corridor
+    uniqueID: 2327900313
     locked: 0
   - name: GnomeBehind
     uniqueID: 3339160727

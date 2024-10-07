@@ -12,6 +12,9 @@ namespace Gnomes
 {
     public class Radiozilla: Gnome
     {
+        public static event Action<Gnome> OnSpawnInDoors;
+        public static event Action<Gnome> OnDespawnInDoors;
+        
         [SerializeField] private int minSoundAmountToShoo;
         [SerializeField] private int maxSoundAmountToShoo;
         [SerializeField] private int minTomatoesAmountToShoo;
@@ -28,15 +31,19 @@ namespace Gnomes
         
         private SoundButton[] _soundButtons;
         private Tomato _tomato;
-        private void OnDestroy()
+
+        protected override void OnDestroy()
         {
             SubscribeOnButtons(false);
             _tomato.OnTomatoClicked -= OnTomatoClicked;
+            OnDespawnInDoors?.Invoke(this);
+            base.OnDestroy();
         }
-        
         public void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, CameraMovement cameraMovement,
             SoundManager soundManager, Tomato tomato, SoundButton[] soundButtons)
         {
+            OnSpawnInDoors?.Invoke(this);
+            
             _soundAmountToShoo = Random.Range(minSoundAmountToShoo, maxSoundAmountToShoo + 1);
             _tomatoesAmountToShoo = Random.Range(minTomatoesAmountToShoo, maxTomatoesAmountToShoo + 1);
             
@@ -48,6 +55,12 @@ namespace Gnomes
             _tomato.OnTomatoClicked += OnTomatoClicked;
             
             base.Initialize(routePointPair, screamer, flashlight, cameraMovement, soundManager);
+        }
+
+        protected override UniTask Attack(CancellationToken token)
+        {
+            OnDespawnInDoors?.Invoke(this);
+            return base.Attack(token);
         }
 
         private void PlayAppearSound(SoundManager soundManager)
