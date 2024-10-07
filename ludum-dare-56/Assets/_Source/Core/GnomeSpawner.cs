@@ -50,6 +50,7 @@ namespace Core
         }
         private void Start()
         {
+            _soundManager.SetMusicArea(MusicAct.Game);
             StartSpawningSequence(_cancelSpawningCycle.Token).Forget();
         }
 

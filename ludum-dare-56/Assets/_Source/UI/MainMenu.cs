@@ -32,8 +32,8 @@ namespace UI
         private void StartGame()
         {
             //TODO show guide and newspapers
-            startGameButton.interactable = false;
             _soundManager.SetMusicArea(MusicAct.Game);
+            startGameButton.interactable = false;
             SceneManager.LoadScene("1stLevel");
         }
         private void OpenSettings()

@@ -1,4 +1,5 @@
-﻿using Sound;
+﻿using FMODUnity;
+using Sound;
 using UnityEngine;
 using Zenject;
 
@@ -13,8 +14,16 @@ namespace Installers
         }
         private void BindSoundManager()
         {
-            var audioManager = Container.InstantiatePrefabForComponent<SoundManager>(SoundManagerPrefab);
-            Container.Bind<SoundManager>().FromInstance(audioManager).AsSingle();
+            var soundManager = Container.InstantiatePrefabForComponent<SoundManager>(SoundManagerPrefab);
+            Container.Bind<SoundManager>().FromInstance(soundManager).AsSingle();
+            GetBuses();
+        }
+        private void GetBuses()
+        {
+            var soundManager = Container.Resolve<SoundManager>(); 
+            soundManager.masterBus = RuntimeManager.GetBus("bus:/");
+            soundManager.musicBus = RuntimeManager.GetBus("bus:/Music");
+            soundManager.sfxBus = RuntimeManager.GetBus("bus:/SFX");
         }
     }
 }

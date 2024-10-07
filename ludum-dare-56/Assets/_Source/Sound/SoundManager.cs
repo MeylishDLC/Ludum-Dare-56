@@ -19,20 +19,17 @@ namespace Sound
         [Range(0, 1)] public float musicVolume = 1;
         [Range(0, 1)] public float SFXVolume = 1;
         [field:SerializeField] public FMODEvents FMODEvents { get; private set; }
-        
-        private Bus masterBus;
-        private Bus musicBus;
-        private Bus sfxBus;
+
+        public Bus masterBus;
+        public Bus musicBus;
+        public Bus sfxBus;
 
         private List<EventInstance> eventInstances = new();
 
         private EventInstance musicEventInstance;
-
-        [Inject]
-        public void Initialize()
+        private void Awake()
         {
             LoadBanks();
-            GetBuses();
         }
         private void Start()
         {
@@ -97,7 +94,7 @@ namespace Sound
         {
             CleanUp();
         }
-        private void GetBuses()
+        public void GetBuses()
         {
             masterBus = RuntimeManager.GetBus("bus:/");
             musicBus = RuntimeManager.GetBus("bus:/Music");

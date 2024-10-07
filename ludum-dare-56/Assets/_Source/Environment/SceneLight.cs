@@ -14,6 +14,7 @@ namespace Environment
     public class SceneLight: MonoBehaviour
     {
         [SerializeField] private Light2D baseSceneLight;
+        [SerializeField] private Light2D[] doorLights;
         [SerializeField] private float minDimValue;
         [SerializeField] private float lightBlinkDuration;
         [SerializeField] private float smoothDuration;
@@ -22,6 +23,7 @@ namespace Environment
         
         private Flashlight _flashlight;
         private float _originalIntensity;
+        private float _doorLightOrigIntensity;
         private bool _isBlinking;
 
         [Inject]
@@ -29,6 +31,7 @@ namespace Environment
         {
             _flashlight = flashlight;
             _originalIntensity = baseSceneLight.intensity;
+            _doorLightOrigIntensity = doorLights[0].intensity;
             Gnome.OnGnomeChangeState += TriggerBlink;
         }
         private void OnDestroy()
@@ -52,28 +55,41 @@ namespace Environment
             
             for (var i = 0; i < blinkAmount; i++)
             {
-                await SmoothTransition(_originalIntensity, minDimValue, 
+                await SmoothTransition(_originalIntensity, _doorLightOrigIntensity, 
+                    minDimValue, minDimValue,
                     timeForOneBlink / 2, CancellationToken.None);
-                await SmoothTransition(minDimValue, _originalIntensity, 
+                
+                await SmoothTransition(minDimValue, minDimValue, 
+                    _originalIntensity, _doorLightOrigIntensity,
                     timeForOneBlink / 2, CancellationToken.None);
             }
             _flashlight.DisableFlashlight(false);
             _isBlinking = false;
         }
         
-        private async UniTask SmoothTransition(float startIntensity, float endIntensity, float duration, CancellationToken token)
+        private async UniTask SmoothTransition(float baseLightStartIntensity, float doorLightStartIntensity, 
+            float baseLightEndIntensity, float doorLightEndIntensity, float duration, CancellationToken token)
         {
             var elapsedTime = 0f;
             while (elapsedTime < smoothDuration)
             {
-                baseSceneLight.intensity = Mathf.Lerp(startIntensity, endIntensity, elapsedTime / smoothDuration);
+                baseSceneLight.intensity = Mathf.Lerp(baseLightStartIntensity, baseLightEndIntensity, elapsedTime / smoothDuration);
+                foreach (var doorLight in doorLights)
+                {
+                    doorLight.intensity = Mathf.Lerp(doorLightStartIntensity, doorLightEndIntensity, elapsedTime / smoothDuration);
+                }
+                
                 elapsedTime += Time.deltaTime;
                 await UniTask.Yield(PlayerLoopTiming.Update);
             }
 
             var timeLeft = duration - smoothDuration;
             await UniTask.Delay(TimeSpan.FromSeconds(timeLeft), cancellationToken: token);
-            baseSceneLight.intensity = endIntensity;
+            baseSceneLight.intensity = baseLightEndIntensity;
+            foreach (var doorLight in doorLights)
+            {
+                doorLight.intensity = doorLightEndIntensity;
+            }
         }
     }
 }
