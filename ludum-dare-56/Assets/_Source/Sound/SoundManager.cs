@@ -11,7 +11,7 @@ namespace Sound
 {
     public class SoundManager : MonoBehaviour
     {
-        public bool MusicInitialized { get; set; }
+        public bool MusicInitialized { get; private set; }
 
         [BankRef]
         public List<string> Banks;
@@ -31,7 +31,13 @@ namespace Sound
         private EventInstance musicEventInstance;
         private void Awake()
         {
-            GetBuses();
+            LoadBanks();
+        }
+        private void Start()
+        {
+            masterBus = RuntimeManager.GetBus("bus:/");
+            musicBus = RuntimeManager.GetBus("bus:/Music");
+            sfxBus = RuntimeManager.GetBus("bus:/SFX");
             InitializeMusic(FMODEvents.GameMusic);
             MusicInitialized = true;
         }
@@ -94,11 +100,16 @@ namespace Sound
         {
             CleanUp();
         }
-        public void GetBuses()
+        private void LoadBanks()
         {
-            masterBus = RuntimeManager.GetBus("bus:/");
-            musicBus = RuntimeManager.GetBus("bus:/Music");
-            sfxBus = RuntimeManager.GetBus("bus:/SFX");
+            foreach (var b in Banks)
+            {
+                RuntimeManager.LoadBank(b, true);
+                Debug.Log("Loaded bank " + b);
+            }
+
+            RuntimeManager.CoreSystem.mixerSuspend();
+            RuntimeManager.CoreSystem.mixerResume();
         }
     }
     

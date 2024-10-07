@@ -16,14 +16,6 @@ namespace Installers
         {
             var soundManager = Container.InstantiatePrefabForComponent<SoundManager>(SoundManagerPrefab);
             Container.Bind<SoundManager>().FromInstance(soundManager).AsSingle();
-            GetBuses();
-        }
-        private void GetBuses()
-        {
-            var soundManager = Container.Resolve<SoundManager>(); 
-            soundManager.masterBus = RuntimeManager.GetBus("bus:/");
-            soundManager.musicBus = RuntimeManager.GetBus("bus:/Music");
-            soundManager.sfxBus = RuntimeManager.GetBus("bus:/SFX");
         }
     }
 }

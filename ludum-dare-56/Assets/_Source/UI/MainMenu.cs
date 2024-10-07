@@ -34,7 +34,6 @@ namespace UI
         
         private Button _newspaperButton;
         private SoundManager _soundManager;
-        private bool _soundManagerCopied;
         
         [Inject]
         public void Initialize(SoundManager soundManager)
@@ -43,15 +42,6 @@ namespace UI
         }
         private void Start()
         {
-            //todo fix
-            if (_soundManager == null)
-            {
-                var soundManagerCopy = Instantiate(soundManagerPrefab).GetComponent<SoundManager>();
-                _soundManager = soundManagerCopy;
-                _soundManagerCopied = true;
-                _soundManager.GetBuses();
-            }
-            
             settingsScreen.gameObject.SetActive(false);
             startGameButton.onClick.AddListener(StartGuide);
             settingsButton.onClick.AddListener(OpenSettings);
@@ -97,11 +87,6 @@ namespace UI
         private async UniTask StartGameAsync(CancellationToken token)
         {
             await newspaper.DOColor(Color.black, newspaperFadeTime).ToUniTask(cancellationToken: token);
-
-            if (_soundManagerCopied)
-            {
-                Destroy(_soundManager);
-            }
             startGameButton.interactable = false;
             SceneManager.LoadScene("1stLevel");
         }
