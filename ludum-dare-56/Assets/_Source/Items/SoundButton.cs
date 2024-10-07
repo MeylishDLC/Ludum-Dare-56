@@ -19,6 +19,11 @@ namespace Items
         [SerializeField] private float cooldown;
         [SerializeField] private Sides side;
 
+        [Header("Visuals")] 
+        [SerializeField] private Sprite pressedSprite;
+        [SerializeField] private Sprite notPressedSprite;
+
+        private SpriteRenderer _spriteRenderer;
         private bool _isOnCooldown;
         private SoundManager _soundManager;
         
@@ -26,6 +31,11 @@ namespace Items
         public void Initialize(SoundManager soundManager)
         {
             _soundManager = soundManager;
+        }
+        private void Start()
+        {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _spriteRenderer.sprite = notPressedSprite;
         }
         private void Update()
         {
@@ -49,7 +59,9 @@ namespace Items
         private async UniTask StartCooldownAsync(CancellationToken token)
         {
             _isOnCooldown = true;
+            _spriteRenderer.sprite = pressedSprite;
             await UniTask.Delay(TimeSpan.FromSeconds(cooldown), cancellationToken: token);
+            _spriteRenderer.sprite = notPressedSprite;
             _isOnCooldown = false;
         }
         private void PlaySound()

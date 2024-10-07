@@ -1711,6 +1711,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSceneLight: {fileID: 619394801}
+  doorLights:
+  - {fileID: 611613782}
+  - {fileID: 299317458}
   minDimValue: 0.002
   lightBlinkDuration: 1
   smoothDuration: 0.08
@@ -2336,6 +2339,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 2
   side: 1
+  pressedSprite: {fileID: 21300000, guid: 34837e043cb44f5489601292b731292e, type: 3}
+  notPressedSprite: {fileID: 21300000, guid: b59b9ba3c90ef3e4b895639e2aff1d3c, type: 3}
 --- !u!58 &959142249
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2920,6 +2925,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 2
   side: 0
+  pressedSprite: {fileID: 21300000, guid: 34837e043cb44f5489601292b731292e, type: 3}
+  notPressedSprite: {fileID: 21300000, guid: b59b9ba3c90ef3e4b895639e2aff1d3c, type: 3}
 --- !u!58 &1128424428
 CircleCollider2D:
   m_ObjectHideFlags: 0
