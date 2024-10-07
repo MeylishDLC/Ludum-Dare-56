@@ -17,7 +17,6 @@ namespace Core
 {
     public class GnomeSpawner : MonoBehaviour
     {
-
         [Header("MAIN")] 
         [SerializeField] private float percentageAmountToSpawnTwoAtOnce;
         [SerializeField] private Transform gnomeContainer;
@@ -50,6 +49,10 @@ namespace Core
         }
         private void Start()
         {
+            if (!_soundManager.MusicInitialized)
+            {
+                _soundManager.InitializeMusic(_soundManager.FMODEvents.GameMusic);
+            }
             _soundManager.SetMusicArea(MusicAct.Game);
             StartSpawningSequence(_cancelSpawningCycle.Token).Forget();
         }

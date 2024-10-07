@@ -104,7 +104,7 @@ MonoBehaviour:
   changeToCloserStateTime: 7
   changeToAttackStateTime: 7
   disappearTime: 2
-  timeBeforeScreamer: 3
+  timeBeforeScreamer: 2
   minSoundAmountToShoo: 1
   maxSoundAmountToShoo: 1
   minTomatoesAmountToShoo: 1

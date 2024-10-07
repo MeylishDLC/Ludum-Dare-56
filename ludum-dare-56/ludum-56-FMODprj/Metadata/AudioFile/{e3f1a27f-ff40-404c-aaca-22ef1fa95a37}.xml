@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{4ea8a40d-2aab-4a44-9774-284ddd17a052}">
+	<object class="AudioFile" id="{e3f1a27f-ff40-404c-aaca-22ef1fa95a37}">
 		<property name="assetPath">
-			<value>Characters/Radiobass/new BASSBOST_SCREAMER_FOR_RADIOBASS (mp3cut.net).mp3</value>
+			<value>Characters/Radiobass/LEFT_EAR_RADIOBASS_LAUGH.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>4.1534693877551021</value>
+			<value>5.6163265306122447</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{169027b8-fe9d-4e12-929e-a9df5ba7f897}</destination>

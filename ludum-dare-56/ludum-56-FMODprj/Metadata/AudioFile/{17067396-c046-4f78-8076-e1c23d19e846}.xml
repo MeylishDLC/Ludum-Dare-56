@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{fd982f67-7dbd-4bc4-8e2a-4fed720cfbbb}">
+	<object class="AudioFile" id="{17067396-c046-4f78-8076-e1c23d19e846}">
 		<property name="assetPath">
-			<value>Characters/Radiozilla/RIGHT_EAR_COUPLE.mp3</value>
+			<value>Characters/Radiobass/BASSBOST_SCREAMER_FOR_RADIOBASS (mp3cut.net) (1).mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>3.5787755102040815</value>
+			<value>4.1795918367346943</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{169027b8-fe9d-4e12-929e-a9df5ba7f897}</destination>

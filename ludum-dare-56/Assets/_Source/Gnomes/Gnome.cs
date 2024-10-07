@@ -98,7 +98,7 @@ namespace Gnomes
             await UniTask.Delay(TimeSpan.FromSeconds(timeBeforeScreamer), cancellationToken: token);
 
             _cameraMovement.EnableCameraMovement(false);
-            _screamer.ShowScreamer(screamerImageSprite, _screamerSound);
+            _screamer.ShowScreamer(this, screamerImageSprite, _screamerSound);
             Debug.Log("Boo game over");
         }
       

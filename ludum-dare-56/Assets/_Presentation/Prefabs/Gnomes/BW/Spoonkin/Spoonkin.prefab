@@ -104,5 +104,5 @@ MonoBehaviour:
   changeToCloserStateTime: 10
   changeToAttackStateTime: 10
   disappearTime: 1
-  timeBeforeScreamer: 3
+  timeBeforeScreamer: 3.5
   timeToHoldFlashlight: 5

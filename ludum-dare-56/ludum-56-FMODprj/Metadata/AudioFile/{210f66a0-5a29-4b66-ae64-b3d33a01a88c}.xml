@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{be30bf61-4ade-413e-9b97-8bf0ac874a01}">
+	<object class="AudioFile" id="{210f66a0-5a29-4b66-ae64-b3d33a01a88c}">
 		<property name="assetPath">
 			<value>Characters/Radiobass/RIGHT_EAR_RADIOBASS_LAUGH.mp3</value>
 		</property>

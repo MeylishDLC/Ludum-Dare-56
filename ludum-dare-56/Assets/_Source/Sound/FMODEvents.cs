@@ -15,6 +15,7 @@ namespace Sound
         [field: SerializeField] public EventReference KnockingRight { get; private set; }
         [field: SerializeField] public EventReference OpeningDoorLeft { get; private set; }
         [field: SerializeField] public EventReference OpeningDoorRight { get; private set; }
+        [field: SerializeField] public EventReference Newspaper { get; private set; }
         
         [field: Header("Items")]
         [field: SerializeField] public EventReference FlashlightSound { get; private set; }

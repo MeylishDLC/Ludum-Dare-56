@@ -27,6 +27,10 @@ namespace Sound
         }
         private void Start()
         {
+            if (_soundManager == null)
+            {
+                _soundManager = FindObjectOfType<SoundManager>();
+            }
             _volumeSlider = GetComponent<Slider>();
             _volumeSlider.onValueChanged.AddListener(_ => OnSliderValueChanged());
             

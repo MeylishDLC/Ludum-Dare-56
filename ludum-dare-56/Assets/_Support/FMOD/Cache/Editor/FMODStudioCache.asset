@@ -96,10 +96,10 @@ MonoBehaviour:
   Path: ludum-56-FMODprj/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638638568718354732
+  lastModified: 638638933731173988
   FileSizes:
   - Name: Desktop
-    Value: 12907072
+    Value: 12907264
   Exists: 1
 --- !u!114 &-5299179412971342796
 MonoBehaviour:
@@ -116,10 +116,10 @@ MonoBehaviour:
   Path: ludum-56-FMODprj/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638638568718944867
+  lastModified: 638639037371763458
   FileSizes:
   - Name: Desktop
-    Value: 2105344
+    Value: 2122848
   Exists: 1
 --- !u!114 &-5249157712980496968
 MonoBehaviour:
@@ -382,12 +382,13 @@ MonoBehaviour:
   - {fileID: -2630601463497485045}
   - {fileID: 5223293690441409736}
   - {fileID: 7549680323505947594}
+  - {fileID: 2349404715462477066}
   EditorParameters: []
   MasterBanks:
   - {fileID: 5857824480987002732}
   StringsBanks:
   - {fileID: 7382597093631512728}
-  cacheTime: 638638568718944867
+  cacheTime: 638639037371763458
   cacheVersion: 131616
 --- !u!114 &1846761899963156420
 MonoBehaviour:
@@ -407,6 +408,33 @@ MonoBehaviour:
     Data2: 1118853013
     Data3: -2056315999
     Data4: -1007037771
+  Banks:
+  - {fileID: -5299179412971342796}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2349404715462477066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Newspaper
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Newspaper
+  Guid:
+    Data1: 1587975162
+    Data2: 1087440414
+    Data3: -29789309
+    Data4: 1490058118
   Banks:
   - {fileID: -5299179412971342796}
   IsStream: 0
@@ -729,7 +757,7 @@ MonoBehaviour:
   Path: ludum-56-FMODprj/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638638568717316236
+  lastModified: 638638907613621697
   FileSizes:
   - Name: Desktop
     Value: 1340
@@ -776,10 +804,10 @@ MonoBehaviour:
   Path: ludum-56-FMODprj/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638638568717326239
+  lastModified: 638638907613631700
   FileSizes:
   - Name: Desktop
-    Value: 2194
+    Value: 2234
   Exists: 1
 --- !u!114 &7549680323505947594
 MonoBehaviour:

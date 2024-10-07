@@ -54,6 +54,13 @@ MonoBehaviour:
       Data3: -733647718
       Data4: 633836306
     Path: event:/SFX/OpeningDoorRight
+  <Newspaper>k__BackingField:
+    Guid:
+      Data1: 1587975162
+      Data2: 1087440414
+      Data3: -29789309
+      Data4: 1490058118
+    Path: event:/SFX/Newspaper
   <FlashlightSound>k__BackingField:
     Guid:
       Data1: -1466972376
@@ -77,18 +84,18 @@ MonoBehaviour:
     Path: event:/Items/LeftButton
   <LeftTomato>k__BackingField:
     Guid:
-      Data1: 861371500
-      Data2: 1283873747
-      Data3: 1560792196
-      Data4: -1945430793
-    Path: event:/Items/TomatoRight
-  <RightTomato>k__BackingField:
-    Guid:
       Data1: -1434134222
       Data2: 1118304907
       Data3: -2091819623
       Data4: 1725003185
     Path: event:/Items/TomatoLeft
+  <RightTomato>k__BackingField:
+    Guid:
+      Data1: 861371500
+      Data2: 1283873747
+      Data3: 1560792196
+      Data4: -1945430793
+    Path: event:/Items/TomatoRight
   <RadioBassScreamer>k__BackingField:
     Guid:
       Data1: 757286066

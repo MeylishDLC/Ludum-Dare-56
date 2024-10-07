@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Core;
 using Cysharp.Threading.Tasks;
 using FMODUnity;
 using Sound;
@@ -31,16 +32,20 @@ namespace Gnomes
             _screamerAnimator = GetComponent<Animator>();
             _screamerUIImage.gameObject.SetActive(false);
         }
-        public void ShowScreamer(Sprite screamerSprite, EventReference sound)
+        public void ShowScreamer(Gnome gnome, Sprite screamerSprite, EventReference sound)
         {
-            ShowScreamerAsync(screamerSprite, sound, CancellationToken.None).Forget();
+            ShowScreamerAsync(gnome, screamerSprite, sound, CancellationToken.None).Forget();
         }
-        private async UniTask ShowScreamerAsync(Sprite screamerSprite, EventReference sound, CancellationToken token)
+        private async UniTask ShowScreamerAsync(Gnome gnome, Sprite screamerSprite, EventReference sound, CancellationToken token)
         {
             _screamerUIImage.gameObject.SetActive(true);
             _screamerUIImage.sprite = screamerSprite;
             _soundManager.PlayOneShot(sound);
-            _screamerAnimator.SetTrigger(Shake);
+            
+            if (gnome.GnomeType == GnomeTypes.RadioBass)
+            {
+                _screamerAnimator.SetTrigger(Shake);
+            }
             
             await UniTask.Delay(TimeSpan.FromSeconds(timeForScreamer), cancellationToken: token);
             OnPlayerDeath?.Invoke();

@@ -45,9 +45,8 @@ namespace Items
                 {
                     if (!_isOnCooldown)
                     {
-                        Debug.Log("Tomato thrown");
                         _animator.SetTrigger(property);
-                        PlaySound();
+                        PlaySound().Forget();
                         
                         OnTomatoClicked?.Invoke();
                         StartCooldownAsync(CancellationToken.None).Forget();
@@ -55,8 +54,9 @@ namespace Items
                 }
             }
         }
-        private void PlaySound()
+        private async UniTask PlaySound()
         {
+            await UniTask.Delay(420);
             _soundManager.PlayOneShot(side == Sides.Left
                 ? _soundManager.FMODEvents.LeftTomato
                 : _soundManager.FMODEvents.RightTomato);
