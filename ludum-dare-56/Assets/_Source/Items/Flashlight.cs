@@ -19,6 +19,7 @@ namespace Items
 
         private float _remainingChargeTime;
         private bool _canTurnOn = true;
+        private bool _isOutOfCharge;
         
         private int _currentBarIndex;
         private float _timeToWasteOneBar;
@@ -89,6 +90,12 @@ namespace Items
         }
         public void DisableFlashlight(bool disable)
         {
+            if (_isOutOfCharge)
+            {
+                _canTurnOn = false;
+                return;
+            }
+            
             if (disable)
             {
                 _canTurnOn = false;
@@ -121,6 +128,8 @@ namespace Items
                 }
                 await UniTask.Yield(PlayerLoopTiming.TimeUpdate);
             }
+
+            _isOutOfCharge = true;
             _canTurnOn = false;
             TurnOnFlashlight(false);
             if (_cancelTrackBarsChargeCts != null)
@@ -143,6 +152,7 @@ namespace Items
                     if (IsOn)
                     {
                         _barTimeRemaining -= Time.deltaTime;
+                        Debug.Log(_barTimeRemaining);
                     }
 
                     await UniTask.Yield(PlayerLoopTiming.Update);

@@ -45,9 +45,9 @@ namespace Environment
                 gameObject.SetActive(false);
             }
 
-            if (gnome.GnomeType == GnomeTypes.RadiozillaRight
+            if ((gnome.GnomeType == GnomeTypes.RadiozillaRight
                 || gnome.GnomeType == GnomeTypes.TomatozillaRight
-                || gnome.GnomeType == GnomeTypes.RadioBassRight
+                || gnome.GnomeType == GnomeTypes.RadioBassRight)
                 && side == Side.Right)
             {
                 gameObject.SetActive(false);
@@ -63,9 +63,9 @@ namespace Environment
                 gameObject.SetActive(true);
             }
 
-            if (gnome.GnomeType == GnomeTypes.RadiozillaRight
+            if ((gnome.GnomeType == GnomeTypes.RadiozillaRight
                 || gnome.GnomeType == GnomeTypes.TomatozillaRight
-                || gnome.GnomeType == GnomeTypes.RadioBassRight
+                || gnome.GnomeType == GnomeTypes.RadioBassRight)
                 && side == Side.Right)
             {
                 gameObject.SetActive(true);

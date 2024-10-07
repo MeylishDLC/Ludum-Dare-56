@@ -83,7 +83,6 @@ namespace Gnomes
                 if (_flashlight.IsOn)
                 {
                     _remainingTimeToHold -= Time.deltaTime;
-                    Debug.Log($"{_remainingTimeToHold}");
                 }
            
                 await UniTask.Yield(PlayerLoopTiming.TimeUpdate);
