@@ -1679,6 +1679,7 @@ MonoBehaviour:
   - {fileID: 145106878672051910, guid: e7164fef850fb754485d2621392e8f79, type: 3}
   - {fileID: 4432424226775027704, guid: d29e8246a862ee449861abe2b5338df5, type: 3}
   - {fileID: 4432424226775027704, guid: 1debf477c8a9baf46abff6ee30fef30a, type: 3}
+  - {fileID: 145106878672051910, guid: e7164fef850fb754485d2621392e8f79, type: 3}
   maxTimeBetweenSpawn: 30
   minTimeBetweenSpawn: 10
   tomatoes:
@@ -1738,6 +1739,10 @@ PrefabInstance:
     - target: {fileID: 2773571177791227261, guid: 2cd7dbd483265d0489031f28c5f7bf16, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214840498242273066, guid: 2cd7dbd483265d0489031f28c5f7bf16, type: 3}
+      propertyPath: chargeTime
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 9214840498242273066, guid: 2cd7dbd483265d0489031f28c5f7bf16, type: 3}
       propertyPath: chargeBars.Array.size

@@ -1490,7 +1490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a179d3d38d46a28ec85ed26e138a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  percentageAmountToSpawnTwoAtOnce: 15
+  percentageAmountToSpawnTwoAtOnce: 20
   gnomeContainer: {fileID: 919595373}
   routes:
   - <FurtherPoint>k__BackingField: {fileID: 1979571144}
@@ -1514,8 +1514,9 @@ MonoBehaviour:
   - {fileID: 684426545325050221, guid: 69278a13c53ddbd448ac7a6a12031e35, type: 3}
   - {fileID: 4432424226775027704, guid: 1debf477c8a9baf46abff6ee30fef30a, type: 3}
   - {fileID: 4432424226775027704, guid: d29e8246a862ee449861abe2b5338df5, type: 3}
-  maxTimeBetweenSpawn: 25
-  minTimeBetweenSpawn: 7
+  - {fileID: 145106878672051910, guid: e7164fef850fb754485d2621392e8f79, type: 3}
+  maxTimeBetweenSpawn: 20
+  minTimeBetweenSpawn: 6
   tomatoes:
   - {fileID: 1944906032}
   - {fileID: 1944906031}
@@ -1931,6 +1932,10 @@ PrefabInstance:
     - target: {fileID: 2773571177791227261, guid: 2cd7dbd483265d0489031f28c5f7bf16, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214840498242273066, guid: 2cd7dbd483265d0489031f28c5f7bf16, type: 3}
+      propertyPath: chargeTime
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 9214840498242273066, guid: 2cd7dbd483265d0489031f28c5f7bf16, type: 3}
       propertyPath: chargeBars.Array.size

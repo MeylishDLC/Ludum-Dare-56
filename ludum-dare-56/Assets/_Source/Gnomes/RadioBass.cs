@@ -128,11 +128,6 @@ namespace Gnomes
             ShooGnomeAway();
             SubscribeOnEvents(false);
         }
-        protected override void ShooGnomeAway()
-        {
-            _gnomeShadow?.CancelShadowTracking();
-            base.ShooGnomeAway();
-        }
         private void PlayLaugh()
         {
             if (GnomeType == GnomeTypes.RadioBass)

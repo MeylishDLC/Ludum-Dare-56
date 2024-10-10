@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Presentation/Scenes/GAME-HARD/MainMenuF.unity
-    guid: 226ae51a6a9c7b94bb2d1fb7b9f47326
+    path: Assets/_Presentation/Scenes/GAME-FINAL/MainMenuF.unity
+    guid: 5126e9b9e0ce1994bb392cd3ef0627dc
   - enabled: 1
-    path: Assets/_Presentation/Scenes/GAME-HARD/Level1.unity
-    guid: 1414f81f070d12849b04f8884c0aeee1
+    path: Assets/_Presentation/Scenes/GAME-FINAL/Level1.unity
+    guid: defc44dab25a6b849b5d1b2b35af4b61
   - enabled: 1
-    path: Assets/_Presentation/Scenes/GAME-HARD/Level2.unity
-    guid: 988b6703a0621e8479b781ffbf2612f8
+    path: Assets/_Presentation/Scenes/GAME-FINAL/Level2.unity
+    guid: 659da86c35e4d9549bc308cb66cda6d1
   - enabled: 1
-    path: Assets/_Presentation/Scenes/GAME-HARD/Level3.unity
-    guid: 1c6dbfebec807a44da4619dd92696fb9
+    path: Assets/_Presentation/Scenes/GAME-FINAL/Level3.unity
+    guid: e2194ea8771809a43b3633db5fedd7ac
   m_configObjects: {}
