@@ -1,46 +1,68 @@
-﻿using Items;
+﻿using System.Threading;
+using Cysharp.Threading.Tasks;
+using Items;
 using UnityEngine;
 
 namespace Gnomes
 {
     public class GnomeShadow
     {
-        private GameObject _forwardShadow;
-        private GameObject _backShadow;
-        private Flashlight _flashlight;
+        public GameObject ForwardShadow { get; set; }
+        public GameObject BackShadow { get; set; }
+        public Flashlight _flashlight { get; set; }
 
-        public GnomeShadow(GameObject forwardShadow, GameObject backShadow, Flashlight flashlight)
+        private CancellationTokenSource _cancelFlashlightTrackingCts = new();
+        public GnomeShadow(Flashlight flashlight)
         {
-            _forwardShadow = forwardShadow;
-            _backShadow = backShadow;
-
             _flashlight = flashlight;
-            _flashlight.OnFlashlightSwitch += SwitchShadow;
+            SetShadowsCycle(_cancelFlashlightTrackingCts.Token).Forget();
         }
-        public void Unsubscribe()
+        public void SetShadows(GameObject forwardShadow, GameObject backShadow)
         {
-            _flashlight.OnFlashlightSwitch -= SwitchShadow;
+            ForwardShadow = forwardShadow;
+            BackShadow = backShadow;
         }
-        private void SwitchShadow(bool lightOn)
+        public void CancelShadowTracking()
         {
-            if (lightOn)
+            if (_cancelFlashlightTrackingCts != null)
             {
-                TurnOnBackShadow();
+                _cancelFlashlightTrackingCts.Cancel();
+                _cancelFlashlightTrackingCts.Dispose();
+            }
+        }
+        private async UniTask SetShadowsCycle(CancellationToken token)
+        {
+            while (!token.IsCancellationRequested)
+            {
+                SwitchShadow();
+                await UniTask.Yield(PlayerLoopTiming.Update);
+            }
+        }
+        private void SwitchShadow()
+        {
+            if (ForwardShadow == null || BackShadow == null)
+            {
+                return;
+            }
+            
+            if (!_flashlight.IsOn)
+            {
+                TurnOnForwardShadow();
             }
             else
             {
-                TurnOnForwardShadow();
+                TurnOnBackShadow();
             }
         }
         private void TurnOnBackShadow()
         {
-            _backShadow.SetActive(true);
-            _forwardShadow.SetActive(false);
+            BackShadow.SetActive(true);
+            ForwardShadow.SetActive(false);
         }
         private void TurnOnForwardShadow()
         {
-            _backShadow.SetActive(false);
-            _forwardShadow.SetActive(true);
+            BackShadow.SetActive(false);
+            ForwardShadow.SetActive(true);
         }
     }
 }

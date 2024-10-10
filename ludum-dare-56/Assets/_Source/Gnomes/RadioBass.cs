@@ -38,10 +38,7 @@ namespace Gnomes
             {
                 OnDespawnInDoors?.Invoke(this);
             }
-            if (_gnomeShadow != null)
-            {
-                _gnomeShadow.Unsubscribe();
-            }
+            _gnomeShadow?.CancelShadowTracking();
             base.OnDestroy();
             SubscribeOnEvents(false);
         }
@@ -84,15 +81,8 @@ namespace Gnomes
             
             if (GnomeType == GnomeTypes.RadioBass)
             {
-                if (!_flashlight.IsOn)
-                {
-                    _forwardShadow.SetActive(true);
-                }
-                else
-                {
-                    _backShadow.SetActive(true);
-                }
-                _gnomeShadow = new GnomeShadow(_forwardShadow, _backShadow, _flashlight);
+                _gnomeShadow = new GnomeShadow(_flashlight);
+                _gnomeShadow.SetShadows(_forwardShadow, _backShadow);
             }
             base.GetCloser();
         }
@@ -102,9 +92,10 @@ namespace Gnomes
             {
                 OnDespawnInDoors?.Invoke(this);
             }
+            
             if (_gnomeShadow != null)
             {
-                _gnomeShadow.Unsubscribe();
+                _gnomeShadow.CancelShadowTracking();
                 _backShadow.SetActive(false);
                 _forwardShadow.SetActive(false);
             }
@@ -139,10 +130,7 @@ namespace Gnomes
         }
         protected override void ShooGnomeAway()
         {
-            if (_gnomeShadow != null)
-            {
-                _gnomeShadow.Unsubscribe();
-            }
+            _gnomeShadow?.CancelShadowTracking();
             base.ShooGnomeAway();
         }
         private void PlayLaugh()

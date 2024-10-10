@@ -27,7 +27,9 @@ namespace Gnomes
         public override void Initialize(RoutePointPair routePointPair, Screamer screamer, Flashlight flashlight, 
             CameraMovement cameraMovement, SoundManager soundManager)
         {
-            _shadow = new GnomeShadow(forwardShadow, backShadow, flashlight);
+            _shadow = new GnomeShadow(flashlight);
+            _shadow.SetShadows(forwardShadow, backShadow);
+            
             if (flashlight.IsOn)
             {
                 backShadow.SetActive(true);
@@ -44,34 +46,21 @@ namespace Gnomes
         }
         protected override void OnDestroy()
         {
-            if (_shadow != null)
-            {
-                _shadow.Unsubscribe();
-            }
+            _shadow.CancelShadowTracking();
             base.OnDestroy();
         }
         protected override void GetCloser()
         {
-            _shadow.Unsubscribe();
+            _shadow.SetShadows(forwardShadow2, backShadow2);
             backShadow.SetActive(false);
             forwardShadow.SetActive(false);
-            
-            _shadow = new GnomeShadow(forwardShadow2, backShadow2, _flashlight);
-            if (_flashlight.IsOn)
-            {
-                backShadow2.SetActive(true);
-            }
-            else
-            {
-                forwardShadow2.SetActive(true);
-            }
             base.GetCloser();
         }
         protected override UniTask Attack(CancellationToken token)
         {
+            _shadow.CancelShadowTracking();
             backShadow2.SetActive(false);
             forwardShadow2.SetActive(false);
-            _shadow.Unsubscribe();
             
             return base.Attack(token);
         }

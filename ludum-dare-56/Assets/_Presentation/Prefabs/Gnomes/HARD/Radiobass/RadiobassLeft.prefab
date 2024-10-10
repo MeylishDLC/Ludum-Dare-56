@@ -106,7 +106,7 @@ MonoBehaviour:
   disappearTime: 1
   timeBeforeScreamer: 2
   minSoundAmountToShoo: 2
-  maxSoundAmountToShoo: 3
+  maxSoundAmountToShoo: 2
   timeBeforeLaugh: 1.5
   _forwardShadow: {fileID: 0}
   _backShadow: {fileID: 0}

@@ -191,7 +191,7 @@ MonoBehaviour:
   changeToAttackStateTime: 5
   disappearTime: 1
   timeBeforeScreamer: 2
-  timeToHoldFlashlight: 3
+  timeToHoldFlashlight: 2
   backShadow: {fileID: 5323384880982341500}
   forwardShadow: {fileID: 885282467733447161}
   backShadow2: {fileID: 6443257656397149531}
